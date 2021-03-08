@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context=".fragments.UpcomingRides">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/activity_large_margin"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="@dimen/image_view"
+            android:layout_height="@dimen/image_view"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/activity_extra_large_margin"
+            android:layout_marginBottom="@dimen/activity_extra_large_margin"
+            android:background="@mipmap/bg_home" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/gothicbold"
+            android:gravity="center"
+            android:paddingTop="@dimen/activity_large_margin"
+            android:paddingBottom="@dimen/activity_large_margin"
+            android:text="@string/upcoming_rides_header"
+            android:textColor="@color/material_gray_900"
+            android:textSize="@dimen/activity_heading_text_size" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/gothicregular"
+            android:gravity="center"
+            android:paddingTop="@dimen/activity_large_margin"
+            android:paddingBottom="@dimen/activity_large_margin"
+            android:text="@string/upcoming_rides_subheader"
+            android:textColor="@color/material_gray_800"
+            android:textSize="@dimen/activity_subheading_text_size" />
+
+    </LinearLayout>
+
+
+</FrameLayout>

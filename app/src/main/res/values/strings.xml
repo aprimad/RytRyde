@@ -59,4 +59,10 @@
     <string name="myVechicle">My Vehicle</string>
     <string name="navigation_drawer_open">Open Drawer</string>
     <string name="navigation_drawer_close">Close Drawer</string>
+    <string name="contactUs">Contact Us</string>
+    <string name="joinGroup">Join Group</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="upcoming_rides_header">Let"'"s find a match for your journey.</string>
+    <string name="upcoming_rides_subheader">You can offer or request a ride with your contacts!</string>
 </resources>
