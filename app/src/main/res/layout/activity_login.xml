@@ -151,7 +151,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="start|center"
-
             android:layout_weight="1"
             android:backgroundTint="@color/fb_blue"
             android:drawableLeft="@mipmap/ic_facebook"

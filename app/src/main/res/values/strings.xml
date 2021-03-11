@@ -12,18 +12,8 @@
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
 
-    <string-array name="onboarder_title">
-        <item>Hey there! We don"'"t charge per ride!</item>
-        <item>The Alternative to On Demand</item>
-        <item>It Makes Sense</item>
-    </string-array>
-
-    <string-array name="onboarder_desc">
-        <item>With RytRyde you drive or ride with a friend.</item>
-        <item>We will try to match your journey with one of your trusted connections.</item>
-        <item>By matching your journey with that of a friend, our partnership helps the environment and you save by travelling together.</item>
-    </string-array>
     <string name="title_activity_login">LoginActivity</string>
+
     <string name="prompt_email">Enter Email Address</string>
     <string name="prompt_password">Enter Password</string>
     <string name="action_sign_in">Sign in</string>
@@ -59,4 +49,25 @@
     <string name="myVechicle">My Vehicle</string>
     <string name="navigation_drawer_open">Open Drawer</string>
     <string name="navigation_drawer_close">Close Drawer</string>
+    <string name="share_your_location">Share your location</string>
+    <string name="find_location_easily_by_allowing_rytryde_to_acces_your_location">Find location easily by allowing RytRyde to acces your location</string>
+    <string name="access">Access</string>
+    <string name="not_now">Not now</string>
+    <string name="allow_contacts_access">Allow contacts access</string>
+    <string name="find_trusted_connections_easier_by_allowing_rytryde_to_access_your_contact">Find trusted connections easier by allowing RytRyde to access your contact</string>
+    <string name="fill_vehicle_details">Fill Vehicle Details</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="select_your_subject">Select your Subject</string>
+    <string name="message">Message</string>
+    <string name="submit">Submit</string>
+    <string-array name="onboarder_title">
+        <item>Hey there! We don"'"t charge per ride!</item>
+        <item>The Alternative to On Demand</item>
+        <item>It Makes Sense</item>
+    </string-array>
+    <string-array name="onboarder_desc">
+        <item>With RytRyde you drive or ride with a friend.</item>
+        <item>We will try to match your journey with one of your trusted connections.</item>
+        <item>By matching your journey with that of a friend, our partnership helps the environment and you save by travelling together.</item>
+    </string-array>
 </resources>

@@ -2,9 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.rytryde">
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -13,12 +10,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.RytRyde">
+        <activity android:name=".ContactUsActivity"></activity>
+        <activity android:name=".TermsAndConditions" />
+        <activity android:name=".WhoWeAre" />
+        <activity android:name=".PrivacyPolicy" />
+        <activity android:name=".OnboarderActivity" />
         <activity
             android:name=".ui.login.LoginActivity"
             android:label="@string/title_activity_login"
-            android:theme="@style/Theme.RytRyde.NoActionBar"/>
+            android:theme="@style/Theme.RytRyde.NoActionBar" />
         <activity
-            android:name=".OnboarderActivity"
+            android:name=".FAQActivity"
             android:label="@string/title_activity_onboarder"
             android:theme="@style/Theme.RytRyde.NoActionBar">
             <intent-filter>
@@ -27,7 +29,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
     </application>
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
 </manifest>
