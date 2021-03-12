@@ -26,5 +26,6 @@
     <dimen name="nav_header_height">200dp</dimen>
     <dimen name="image_view">150dp</dimen>
 
+    <dimen name="edit_text_heigth_40_dp">40dp</dimen>
 
 </resources>
