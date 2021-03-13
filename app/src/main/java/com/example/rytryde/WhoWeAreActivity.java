@@ -1,14 +1,16 @@
 package com.example.rytryde;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
-public class WhoWeAre extends AppCompatActivity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class WhoWeAreActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_who_we_are);
+
+        getIntent();
     }
 }

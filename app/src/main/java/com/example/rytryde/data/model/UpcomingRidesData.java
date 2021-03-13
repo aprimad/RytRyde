@@ -5,7 +5,7 @@ import java.util.List;
 
 public class UpcomingRidesData {
     private boolean success;
-    private ArrayList<Ride> data;
+    private List<Ride> data;
     private String carbon_saving;
     private int unread_notification;
     private String terms_status;

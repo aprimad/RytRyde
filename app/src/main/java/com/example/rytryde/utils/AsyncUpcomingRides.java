@@ -1,9 +1,14 @@
 package com.example.rytryde.utils;
 
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import androidx.fragment.app.Fragment;
+
+import com.example.rytryde.R;
 import com.example.rytryde.data.model.UpcomingRidesData;
+import com.example.rytryde.fragments.UpcomingRidesFragment;
 import com.example.rytryde.service.app.UpcomingRidesService;
 import com.example.rytryde.service.http.rides.IRideService;
 import com.example.rytryde.service.http.rides.RideService;
@@ -16,10 +21,23 @@ public class AsyncUpcomingRides extends AsyncTask<String, String, String> {
 
     private IRideService rideService = new RideService();
     private UpcomingRidesData upcomingRidesData;
+    private Fragment fragment;
+
+    private ProgressDialog loadingDialog;
+
+    public AsyncUpcomingRides(Fragment mFragment) {
+        this.fragment = mFragment;
+    }
 
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
+        if (loadingDialog == null) {
+            loadingDialog = new ProgressDialog(fragment.getContext());
+            loadingDialog.setMessage(fragment.getString(R.string.loading));
+            loadingDialog.setCancelable(false);
+            loadingDialog.show();
+        }
 
     }
 
@@ -53,6 +71,10 @@ public class AsyncUpcomingRides extends AsyncTask<String, String, String> {
 
                 if (upcomingRidesData.isSuccess()) {
                     UpcomingRidesService.saveUpcomingRides(response);
+                    if (loadingDialog != null && loadingDialog.isShowing())
+                        loadingDialog.dismiss();
+                    ((UpcomingRidesFragment) fragment).refreshFragmentView();
+                    ;
                 } else {
 
                 }

@@ -11,10 +11,10 @@ import com.example.rytryde.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link RatingandReview#newInstance} factory method to
+ * Use the {@link RatingandReviewFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class RatingandReview extends Fragment {
+public class RatingandReviewFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -25,7 +25,7 @@ public class RatingandReview extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public RatingandReview() {
+    public RatingandReviewFragment() {
         // Required empty public constructor
     }
 
@@ -38,8 +38,8 @@ public class RatingandReview extends Fragment {
      * @return A new instance of fragment RatingandReview.
      */
     // TODO: Rename and change types and number of parameters
-    public static RatingandReview newInstance(String param1, String param2) {
-        RatingandReview fragment = new RatingandReview();
+    public static RatingandReviewFragment newInstance(String param1, String param2) {
+        RatingandReviewFragment fragment = new RatingandReviewFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

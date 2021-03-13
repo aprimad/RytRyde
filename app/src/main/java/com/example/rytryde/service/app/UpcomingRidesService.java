@@ -5,12 +5,12 @@ import android.content.SharedPreferences;
 import android.text.TextUtils;
 
 import com.example.rytryde.App;
+import com.example.rytryde.data.model.Ride;
 import com.example.rytryde.data.model.UpcomingRidesData;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class UpcomingRidesService {
     private static final String SETTINGS_NAME = "RytRyde.settings";
@@ -31,7 +31,18 @@ public class UpcomingRidesService {
         if (TextUtils.isEmpty(sessionId)) {
             return null;
         }
-        return gson.fromJson(sessionId, new TypeToken<ArrayList<UpcomingRidesData>>() {
-        }.getType());
+        return gson.fromJson(sessionId, UpcomingRidesData.class);
+    }
+
+    public static List<Ride> getUpcomingRidesData() {
+        UpcomingRidesData ridesData;
+        SharedPreferences preferences = App.getApp().getSharedPreferences(SETTINGS_NAME, Context.MODE_PRIVATE);
+        String sessionId = preferences.getString(UPCOMING_RIDES, null);
+        if (TextUtils.isEmpty(sessionId)) {
+            return null;
+        } else
+            ridesData = gson.fromJson(sessionId, UpcomingRidesData.class);
+
+        return ridesData.getData();
     }
 }

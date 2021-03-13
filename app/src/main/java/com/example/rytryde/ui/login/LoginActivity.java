@@ -19,7 +19,6 @@ import com.example.rytryde.data.model.Login;
 import com.example.rytryde.service.app.AppService;
 import com.example.rytryde.service.http.account.AccountService;
 import com.example.rytryde.service.http.account.IAccountService;
-import com.example.rytryde.utils.AsyncUpcomingRides;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -148,7 +147,6 @@ public class LoginActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     Log.e("exception",e.getMessage());
                 }
-                new AsyncUpcomingRides().execute();
                 Intent i = new Intent(LoginActivity.this, MainActivity.class);
                 i.putExtra("caller", "LoginActivity");
                 startActivity(i);
