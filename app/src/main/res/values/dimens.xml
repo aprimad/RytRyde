@@ -6,6 +6,8 @@
 
     <dimen name="activity_small_margin">14dp</dimen>
     <dimen name="activity_tiny_margin">10dp</dimen>
+    <dimen name="activity_large_margin">20dp</dimen>
+    <dimen name="activity_extra_large_margin">40dp</dimen>
 
     <dimen name="activity_double_horizontal_margin">32dp</dimen>
     <dimen name="activity_double_vertical_margin">32dp</dimen>
@@ -16,12 +18,33 @@
     <dimen name="text_size">20dp</dimen>
     <dimen name="activity_image_margin">80dp</dimen>
 
-    <dimen name="activity_heading_text_size">22sp</dimen>
-    <dimen name="activity_subheading_text_size">18sp</dimen>
+    <dimen name="activity_heading_text_size">20sp</dimen>
+    <dimen name="activity_subheading_text_size">16sp</dimen>
 
     <dimen name="icon_size">55dp</dimen>
     <dimen name="nav_header_vertical_spacing">5dp</dimen>
     <dimen name="nav_header_height">200dp</dimen>
+    <dimen name="image_view">150dp</dimen>
+
+    <!--Text size-->
+    <dimen name="big_text_size">30sp</dimen>
+    <dimen name="large_text_size">20sp</dimen>
+    <dimen name="semi_large_text_size">16sp</dimen>
+    <dimen name="normal_text_size">12sp</dimen>
+    <dimen name="medium_text_size">18sp</dimen>
+    <dimen name="small_text_size">10sp</dimen>
+    <dimen name="tiny_text_size">8sp</dimen>
+
+    <!-- Margins and padding -->
+    <dimen name="margin_tiny">5dip</dimen>
+    <dimen name="margin_very_small">8dip</dimen>
+    <dimen name="margin_small">10dip</dimen>
+    <dimen name="margin">12dip</dimen>
+    <dimen name="margin_large">18dip</dimen>
+    <dimen name="margin_medium">24dip</dimen>
+    <dimen name="margin_very_large">30dip</dimen>
+    <dimen name="margin_huge">40dip</dimen>
+
     <dimen name="edit_text_heigth_40_dp">40dp</dimen>
 
 </resources>

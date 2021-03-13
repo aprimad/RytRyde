@@ -26,8 +26,16 @@
             android:title="@string/myVechicle" />
         <item
             android:id="@+id/nav_groups"
-            android:icon="@mipmap/ic_join_group02"
+            android:icon="@mipmap/ic_nav_mygroup"
             android:title="@string/myGroups" />
+        <item
+            android:id="@+id/nav_contact_us"
+            android:icon="@mipmap/ic_nav_contactus"
+            android:title="@string/contactUs" />
+        <item
+            android:id="@+id/nav_join_group"
+            android:icon="@mipmap/ic_nav_join_group"
+            android:title="@string/joinGroup" />
     </group>
 
     <item android:title="@string/about">

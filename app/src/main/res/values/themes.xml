@@ -19,6 +19,7 @@
     <style name="Theme.RytRyde.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+
     </style>
 
     <style name="Theme.RytRyde.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
