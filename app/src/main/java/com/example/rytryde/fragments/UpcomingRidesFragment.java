@@ -25,7 +25,7 @@ public class UpcomingRidesFragment extends Fragment {
     public RecyclerView mRecyclerView;
     public UpcomingRideItemAdapter rideItemAdapter;
     List<Ride> upcomingRidesData;
-    LinearLayout noRidesLL;
+    LinearLayout noRidesLL, ridesLL;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,6 +33,7 @@ public class UpcomingRidesFragment extends Fragment {
 
 
         new AsyncUpcomingRides(this).execute();
+
 
     }
 
@@ -50,6 +51,7 @@ public class UpcomingRidesFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         noRidesLL = (LinearLayout) view.findViewById(R.id.no_upcomingrides);
+        ridesLL = view.findViewById(R.id.ridesLL);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.upcomingRidesRV);
         refreshFragmentView();
 
@@ -59,10 +61,12 @@ public class UpcomingRidesFragment extends Fragment {
     public void refreshFragmentView() {
         upcomingRidesData = UpcomingRidesService.getUpcomingRidesData();
 
-
-        if (upcomingRidesData == null)
+        if (upcomingRidesData.size() == 0) {
             noRidesLL.setVisibility(View.VISIBLE);
-        else {
+            ridesLL.setVisibility(View.GONE);
+        } else {
+            noRidesLL.setVisibility(View.GONE);
+            ridesLL.setVisibility(View.VISIBLE);
             mLayoutManager = new LinearLayoutManager(getContext());
             mRecyclerView.setLayoutManager(mLayoutManager);
             rideItemAdapter = new UpcomingRideItemAdapter(getContext(), upcomingRidesData);

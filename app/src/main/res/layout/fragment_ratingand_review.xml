@@ -3,12 +3,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.RatingandReviewFragment">
+    android:background="@color/material_blue_050"
+    tools:context=".fragments.UpcomingRidesFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:id="@+id/no_rides_to_rate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/activity_large_margin"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/activity_extra_large_margin"
+            android:layout_marginBottom="@dimen/activity_extra_large_margin"
+            android:background="@mipmap/bg_rating" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/gothicbold"
+            android:gravity="center"
+            android:paddingTop="@dimen/activity_large_margin"
+            android:paddingBottom="@dimen/activity_large_margin"
+            android:text="@string/no_rating_and_reviews_found"
+            android:textColor="@color/material_gray_900"
+            android:textSize="@dimen/activity_heading_text_size" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/rideRatingLL"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/ratingRidesRV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
 
 </FrameLayout>

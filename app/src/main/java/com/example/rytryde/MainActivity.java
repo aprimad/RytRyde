@@ -10,16 +10,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.rytryde.fragments.RatingandReviewFragment;
 import com.example.rytryde.fragments.UpcomingRidesFragment;
+import com.example.rytryde.utils.AsyncUpcomingRides;
 import com.example.rytryde.utils.TabAdapter;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    Fragment upcomingRides, ratingReview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +39,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tablayout);
         TabAdapter adapter = new TabAdapter(getSupportFragmentManager());
+        //SwipeRefreshLayout pullToRefresh = findViewById(R.id.pullToRefresh);
+
+        upcomingRides = new UpcomingRidesFragment();
+        ratingReview = new RatingandReviewFragment();
 
         setSupportActionBar(topAppBar);
 
@@ -46,8 +54,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mNavigationView.setItemIconTintList(null);
         mNavigationView.setNavigationItemSelectedListener(this);
 
-        adapter.addFragment(new UpcomingRidesFragment(), "Upcoming Rides");
-        adapter.addFragment(new RatingandReviewFragment(), "Rating & Review");
+
+        adapter.addFragment(upcomingRides, "Upcoming Rides");
+        adapter.addFragment(ratingReview, "Rating & Review");
+
+        /*pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refreshFragments();
+                pullToRefresh.setRefreshing(false);
+            }
+        });*/
 
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
@@ -109,5 +126,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void refreshFragments() {
+        new AsyncUpcomingRides(upcomingRides).execute();
     }
 }

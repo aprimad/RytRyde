@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:background="@color/material_blue_050"
     tools:context=".fragments.UpcomingRidesFragment">
 
     <LinearLayout
@@ -12,12 +12,11 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="@dimen/activity_large_margin"
-        android:visibility="gone"
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="@dimen/image_view"
-            android:layout_height="@dimen/image_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/activity_extra_large_margin"
             android:layout_marginBottom="@dimen/activity_extra_large_margin"
@@ -50,6 +49,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ridesLL"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

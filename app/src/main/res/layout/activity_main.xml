@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -20,9 +22,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
 
+        app:itemIconSize="@dimen/icon_size"
         app:menu="@menu/bottom_app_bar"
-        app:navigationIcon="@mipmap/ic_person"
-        app:itemIconSize="@dimen/icon_size" />
+        app:navigationIcon="@mipmap/ic_person" />
 
     <!--<RelativeLayout
         style="@style/Widget.MaterialComponents.BottomAppBar"

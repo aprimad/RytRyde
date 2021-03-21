@@ -1,10 +1,19 @@
 package com.example.rytryde;
 
 import android.os.Bundle;
+import android.webkit.WebView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.rytryde.service.app.CmsDataService;
+import com.example.rytryde.utils.AsyncTnC;
+import com.example.rytryde.utils.Constants;
+
 public class WhoWeAreActivity extends AppCompatActivity {
+
+    WebView wAwWV;
+    TextView wAwTV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -12,5 +21,16 @@ public class WhoWeAreActivity extends AppCompatActivity {
         setContentView(R.layout.activity_who_we_are);
 
         getIntent();
+        getIntent();
+        wAwWV = findViewById(R.id.wAwWV);
+        wAwTV = findViewById(R.id.cmsToolbarTitle);
+
+        new AsyncTnC(this, Constants.ABOUT_US).execute();
+
+    }
+
+    public void loadWebView() {
+        wAwTV.setText(CmsDataService.getAboutUsTitle());
+        wAwWV.loadDataWithBaseURL(null, CmsDataService.getAboutUsData(), "text/html", "utf-8", null);
     }
 }
