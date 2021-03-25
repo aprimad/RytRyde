@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.rytryde">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -33,9 +36,9 @@
         <activity
             android:name=".ui.login.LoginActivity"
             android:label="@string/title_activity_login"
-            android:theme="@style/Theme.RytRyde.NoActionBar" />
+            android:theme="@style/Theme.RytRyde.NoActionBar"/>
         <activity
-            android:name=".FAQActivity"
+            android:name=".OnboarderActivity"
             android:label="@string/title_activity_onboarder"
             android:theme="@style/Theme.RytRyde.NoActionBar">
             <intent-filter>
@@ -45,10 +48,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".SignInActivity" />
-        <activity android:name=".MainActivity" />
-    </application>
-    <uses-permission android:name="android.permission.INTERNET" />
+      
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/Theme.RytRyde.NoActionBar">
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+        </activity>
+    </application>
 
 </manifest>
