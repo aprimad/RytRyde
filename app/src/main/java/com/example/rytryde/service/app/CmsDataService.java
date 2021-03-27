@@ -3,11 +3,16 @@ package com.example.rytryde.service.app;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.example.rytryde.App;
+import com.example.rytryde.data.model.FAQData;
+import com.example.rytryde.data.model.FAQItemData;
 import com.example.rytryde.data.model.TermsAndConditions;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
+import java.util.List;
 
 public class CmsDataService {
 
@@ -15,6 +20,7 @@ public class CmsDataService {
     private static final String TERMS_AND_CONDITIONS = "tnc";
     private static final String PRIVACY_POLICY = "pp";
     private static final String ABOUT_US = "ac";
+    private static final String FAQ = "faq";
 
     private static Gson gson = new GsonBuilder().create();
 
@@ -35,16 +41,6 @@ public class CmsDataService {
         return tnc.getContent();
     }
 
-    public static String getTnCTitle() {
-        SharedPreferences preferences = App.getApp().getSharedPreferences(SETTINGS_NAME, Context.MODE_PRIVATE);
-        String sessionId = preferences.getString(TERMS_AND_CONDITIONS, null);
-        TermsAndConditions tnc = new Gson().fromJson(sessionId, TermsAndConditions.class);
-        if (TextUtils.isEmpty(sessionId)) {
-            return null;
-        }
-        return tnc.getTitle();
-    }
-
     public static void savePrivacyData(String data) {
         SharedPreferences preferences = App.getApp().getSharedPreferences(SETTINGS_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
@@ -62,15 +58,6 @@ public class CmsDataService {
         return tnc.getContent();
     }
 
-    public static String getPrivacyTitle() {
-        SharedPreferences preferences = App.getApp().getSharedPreferences(SETTINGS_NAME, Context.MODE_PRIVATE);
-        String sessionId = preferences.getString(PRIVACY_POLICY, null);
-        TermsAndConditions tnc = new Gson().fromJson(sessionId, TermsAndConditions.class);
-        if (TextUtils.isEmpty(sessionId)) {
-            return null;
-        }
-        return tnc.getTitle();
-    }
 
     public static void saveAboutUsData(String data) {
         SharedPreferences preferences = App.getApp().getSharedPreferences(SETTINGS_NAME, Context.MODE_PRIVATE);
@@ -89,13 +76,35 @@ public class CmsDataService {
         return tnc.getContent();
     }
 
-    public static String getAboutUsTitle() {
+    public static void saveFAQData(String data) {
         SharedPreferences preferences = App.getApp().getSharedPreferences(SETTINGS_NAME, Context.MODE_PRIVATE);
-        String sessionId = preferences.getString(ABOUT_US, null);
-        TermsAndConditions tnc = new Gson().fromJson(sessionId, TermsAndConditions.class);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(FAQ, data);
+        editor.commit();
+    }
+
+    public static String getNextFAQPageURL() {
+        SharedPreferences preferences = App.getApp().getSharedPreferences(SETTINGS_NAME, Context.MODE_PRIVATE);
+        String sessionId = preferences.getString(FAQ, null);
+        FAQData data = new Gson().fromJson(sessionId, FAQData.class);
         if (TextUtils.isEmpty(sessionId)) {
             return null;
         }
-        return tnc.getTitle();
+        return data.getNext_page_url();
     }
+
+    public static List<FAQItemData> getFAQItems() {
+        FAQData faqData;
+        SharedPreferences preferences = App.getApp().getSharedPreferences(SETTINGS_NAME, Context.MODE_PRIVATE);
+        String sessionId = preferences.getString(FAQ, null);
+        if (TextUtils.isEmpty(sessionId)) {
+            return null;
+        } else
+            faqData = gson.fromJson(sessionId, FAQData.class);
+
+        Log.e("faq", faqData.getFirst_page_url());
+
+        return faqData.getData();
+    }
+
 }

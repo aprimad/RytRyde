@@ -1,4 +1,4 @@
-package com.example.rytryde.utils;
+package com.example.rytryde.adapters;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;

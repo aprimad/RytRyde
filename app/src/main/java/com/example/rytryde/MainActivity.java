@@ -16,7 +16,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.rytryde.fragments.RatingandReviewFragment;
 import com.example.rytryde.fragments.UpcomingRidesFragment;
 import com.example.rytryde.utils.AsyncUpcomingRides;
-import com.example.rytryde.utils.TabAdapter;
+import com.example.rytryde.adapters.TabAdapter;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;

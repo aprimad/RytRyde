@@ -14,9 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RytRyde">
         <activity android:name=".ContactUsActivity" />
-        <activity android:name=".FAQActivity">
-
-        </activity>
+        <activity
+            android:name=".FAQActivity"
+            android:theme="@style/Theme.RytRyde.NoActionBar" />
         <activity
             android:name=".TermsAndConditionsActivity"
             android:theme="@style/Theme.RytRyde.NoActionBar">

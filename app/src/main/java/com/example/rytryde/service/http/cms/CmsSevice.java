@@ -17,6 +17,7 @@ public class CmsSevice implements ICmsService {
     public static String terms_and_conditions = base + "/terms-and-conditions";
     public static String privacy_policy = base + "/privacy-policy";
     public static String about_us = base + "/about-us";
+    public static String faq = base + "/faqs";
 
     Response response = null;
     private OkHttpClient httpClient = App.getApp().getOkHttpClient();
@@ -67,6 +68,50 @@ public class CmsSevice implements ICmsService {
     public Response aboutUs() {
         Request request = new Request.Builder()
                 .url(about_us)
+                .addHeader("authorization", "Bearer " + AppService.getUser().getAuthorization())
+                .get()
+                .build();
+
+        try {
+            response = httpClient.newCall(request).execute();
+
+            if (response.isSuccessful()) {
+
+                return response;
+            } else Log.e("response failure", response.body().string());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public Response faq(int page, int limit) {
+        Request request = new Request.Builder()
+                .url(faq)
+                .addHeader("authorization", "Bearer " + AppService.getUser().getAuthorization())
+                .addHeader("page", String.valueOf(page))
+                .addHeader("limit", String.valueOf(limit))
+                .get()
+                .build();
+
+        try {
+            response = httpClient.newCall(request).execute();
+
+            if (response.isSuccessful()) {
+
+                return response;
+            } else Log.e("response failure", response.body().string());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public Response loadNextFAQPage(String nextURL) {
+        Request request = new Request.Builder()
+                .url(nextURL)
                 .addHeader("authorization", "Bearer " + AppService.getUser().getAuthorization())
                 .get()
                 .build();

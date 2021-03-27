@@ -2,22 +2,16 @@
 <androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cmsToolbar"
+    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <RelativeLayout
         android:id="@+id/rl_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
-        android:background="@color/white">
+        android:layout_height="?actionBarSize">
 
-        <ImageView
-            android:id="@+id/iv_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/activity_small_margin"
-            android:src="@drawable/ic_back"
-            app:tint="@color/black" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -34,7 +28,7 @@
             android:layout_toRightOf="@+id/iv_back"
             android:fontFamily="@font/gothicbold"
             android:gravity="center"
-            android:text="@string/privacyPolicy"
+            android:text="@string/terms_amp_conditions"
             android:textColor="@color/black"
             android:textSize="@dimen/activity_subheading_text_size" />
 

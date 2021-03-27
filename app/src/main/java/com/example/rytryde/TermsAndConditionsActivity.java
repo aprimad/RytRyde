@@ -5,6 +5,7 @@ import android.webkit.WebView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.rytryde.service.app.CmsDataService;
 import com.example.rytryde.utils.AsyncTnC;
@@ -14,6 +15,7 @@ public class TermsAndConditionsActivity extends AppCompatActivity {
 
     WebView tnCWB;
     TextView tnCTV;
+    Toolbar tnTB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,14 +25,26 @@ public class TermsAndConditionsActivity extends AppCompatActivity {
         getIntent();
         tnCWB = findViewById(R.id.tncWV);
         tnCTV = findViewById(R.id.cmsToolbarTitle);
+        tnTB = findViewById(R.id.cmsToolbar);
+
+        setSupportActionBar(tnTB);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
 
         new AsyncTnC(this, Constants.TERMS_AND_CONDITIONS).execute();
 
     }
 
     public void loadWebView() {
-        tnCTV.setText(CmsDataService.getTnCTitle());
+        tnCTV.setText(getString(R.string.terms_amp_conditions));
         tnCWB.loadDataWithBaseURL(null, CmsDataService.getTnCData(), "text/html", "utf-8", null);
 
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

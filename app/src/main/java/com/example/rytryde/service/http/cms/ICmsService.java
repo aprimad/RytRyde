@@ -8,4 +8,8 @@ public interface ICmsService {
     Response privacyPolicy();
 
     Response aboutUs();
+
+    Response faq(int page, int limit);
+
+    Response loadNextFAQPage(String nextURL);
 }
