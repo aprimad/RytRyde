@@ -16,8 +16,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.rytryde.MainActivity;
 import com.example.rytryde.R;
 import com.example.rytryde.data.model.Login;
+import com.example.rytryde.service.app.AppService;
 import com.example.rytryde.service.http.account.AccountService;
 import com.example.rytryde.service.http.account.IAccountService;
+import com.example.rytryde.utils.AsyncUpcomingRides;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -129,12 +131,11 @@ public class LoginActivity extends AppCompatActivity {
                 Gson gson = new GsonBuilder().create();
 
                 try {
-
                   loginDetails = gson.fromJson(response, Login.class);
                   Log.e("message", "hi"+loginDetails.getMessage());
 
                   if(loginDetails.getSuccess()){
-
+                      AppService.saveUserInfo(loginDetails.getData());
                   }
                   else {
                       if (!LoginActivity.this.isFinishing()) {
@@ -144,18 +145,16 @@ public class LoginActivity extends AppCompatActivity {
                   }
 
 
-
                 } catch (Exception e) {
                     Log.e("exception",e.getMessage());
                 }
+                new AsyncUpcomingRides().execute();
                 Intent i = new Intent(LoginActivity.this, MainActivity.class);
                 i.putExtra("caller", "LoginActivity");
                 startActivity(i);
                 finish();
 
-
             }
-
 
         }
     }
