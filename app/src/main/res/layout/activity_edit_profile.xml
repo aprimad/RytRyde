@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/contact_us_bg"
+    android:orientation="vertical"
+    tools:context=".EditProfileActivity">
+
+    <RelativeLayout
+        android:id="@+id/rl_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/toolbar_bg">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/activity_small_margin"
+            android:src="@drawable/ic_back"
+            app:tint="@color/black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/iv_back"
+            android:fontFamily="@font/gothicbold"
+            android:gravity="center"
+            android:paddingTop="@dimen/activity_small_margin"
+            android:text="@string/edit_profile"
+            android:textColor="@color/black"
+            android:textSize="@dimen/activity_subheading_text_size" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_size"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="5dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/firstName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/iv_user_image"
+                    android:layout_marginLeft="@dimen/text_size"
+                    android:layout_marginTop="@dimen/text_size"
+                    android:layout_marginRight="@dimen/text_size"
+                    android:background="@drawable/light_blue_round_corner_bg"
+                    android:fontFamily="@font/gothicregular"
+                    android:hint="@string/first_name"
+                    android:padding="@dimen/activity_small_margin" />
+
+                <EditText
+                    android:id="@+id/lastName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/firstName"
+                    android:layout_marginLeft="@dimen/text_size"
+                    android:layout_marginTop="@dimen/text_size"
+                    android:layout_marginRight="@dimen/text_size"
+                    android:background="@drawable/light_blue_round_corner_bg"
+                    android:fontFamily="@font/gothicregular"
+                    android:hint="@string/last_name"
+                    android:padding="@dimen/activity_small_margin" />
+
+                <EditText
+                    android:id="@+id/et_emailAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/lastName"
+                    android:layout_marginLeft="@dimen/text_size"
+                    android:layout_marginTop="@dimen/text_size"
+                    android:layout_marginRight="@dimen/text_size"
+                    android:background="@drawable/light_blue_round_corner_bg"
+                    android:fontFamily="@font/gothicregular"
+                    android:hint="@string/email_address"
+                    android:inputType="textEmailAddress"
+                    android:padding="@dimen/activity_small_margin" />
+
+                <EditText
+                    android:id="@+id/et_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/et_emailAddress"
+                    android:layout_marginLeft="@dimen/text_size"
+                    android:layout_marginTop="@dimen/text_size"
+                    android:layout_marginRight="@dimen/text_size"
+                    android:background="@drawable/light_blue_round_corner_bg"
+                    android:fontFamily="@font/gothicregular"
+                    android:hint="@string/enter_password"
+                    android:inputType="textPassword"
+                    android:padding="@dimen/activity_small_margin" />
+
+                <EditText
+                    android:id="@+id/et_confirm_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/et_password"
+                    android:layout_marginLeft="@dimen/text_size"
+                    android:layout_marginTop="@dimen/text_size"
+                    android:layout_marginRight="@dimen/text_size"
+                    android:background="@drawable/light_blue_round_corner_bg"
+                    android:fontFamily="@font/gothicregular"
+                    android:hint="@string/confirm_password"
+                    android:inputType="textPassword"
+                    android:padding="@dimen/activity_small_margin" />
+
+                <EditText
+                    android:id="@+id/et_country_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/et_confirm_password"
+                    android:layout_marginStart="@dimen/text_size"
+                    android:layout_marginTop="@dimen/text_size"
+                    android:layout_marginEnd="@dimen/nav_header_vertical_spacing"
+                    android:background="@drawable/light_blue_round_corner_bg"
+                    android:drawableRight="@drawable/ic_drop_down"
+                    android:fontFamily="@font/gothicregular"
+                    android:hint="+91"
+                    android:padding="@dimen/activity_small_margin" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/et_confirm_password"
+                    android:layout_marginTop="@dimen/text_size"
+                    android:layout_marginEnd="@dimen/text_size"
+                    android:layout_toEndOf="@id/et_country_code"
+                    android:background="@drawable/light_blue_round_corner_bg"
+                    android:fontFamily="@font/gothicregular"
+                    android:hint="@string/mobile_number"
+                    android:padding="@dimen/activity_small_margin" />
+
+
+                <EditText
+                    android:id="@+id/et_gender"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/et_country_code"
+                    android:layout_marginStart="@dimen/text_size"
+                    android:layout_marginTop="@dimen/text_size"
+                    android:layout_marginEnd="@dimen/nav_header_vertical_spacing"
+                    android:background="@drawable/light_blue_round_corner_bg"
+                    android:drawableEnd="@drawable/ic_drop_down"
+                    android:fontFamily="@font/gothicregular"
+                    android:hint="@string/gender"
+                    android:padding="@dimen/activity_small_margin" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/et_country_code"
+                    android:layout_marginTop="@dimen/text_size"
+                    android:layout_marginEnd="@dimen/text_size"
+                    android:layout_toEndOf="@id/et_gender"
+                    android:background="@drawable/light_blue_round_corner_bg"
+                    android:drawableEnd="@drawable/ic_baseline_date_range_24"
+                    android:drawableTint="@color/black"
+                    android:fontFamily="@font/gothicregular"
+                    android:hint="@string/date_of_birth"
+                    android:maxLines="1"
+                    android:padding="@dimen/activity_small_margin" />
+
+                <EditText
+                    android:id="@+id/et_ride_match_radius"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/et_gender"
+                    android:layout_marginLeft="@dimen/text_size"
+                    android:layout_marginTop="@dimen/text_size"
+                    android:layout_marginRight="@dimen/text_size"
+                    android:background="@drawable/light_blue_round_corner_bg"
+                    android:fontFamily="@font/gothicregular"
+                    android:hint="@string/ride_match_radius"
+                    android:padding="@dimen/activity_small_margin" />
+
+                <EditText
+                    android:id="@+id/et_country"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/ride_radius_text"
+                    android:layout_marginLeft="@dimen/text_size"
+                    android:layout_marginTop="@dimen/text_size"
+                    android:layout_marginRight="@dimen/text_size"
+                    android:background="@drawable/light_blue_round_corner_bg"
+                    android:fontFamily="@font/gothicregular"
+                    android:hint="@string/country"
+                    android:padding="@dimen/activity_small_margin" />
+
+
+                <EditText
+                    android:id="@+id/et_state"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/et_country"
+                    android:layout_marginStart="@dimen/text_size"
+                    android:layout_marginTop="@dimen/text_size"
+                    android:layout_marginEnd="@dimen/nav_header_vertical_spacing"
+                    android:background="@drawable/light_blue_round_corner_bg"
+                    android:drawableEnd="@drawable/ic_drop_down"
+                    android:fontFamily="@font/gothicregular"
+                    android:hint="@string/state"
+                    android:padding="@dimen/activity_small_margin" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/et_country"
+                    android:layout_marginTop="@dimen/text_size"
+                    android:layout_marginEnd="@dimen/text_size"
+                    android:layout_toEndOf="@id/et_gender"
+                    android:background="@drawable/light_blue_round_corner_bg"
+                    android:drawableEnd="@drawable/ic_drop_down"
+                    android:fontFamily="@font/gothicregular"
+                    android:hint="@string/city"
+                    android:maxLines="1"
+                    android:padding="@dimen/activity_small_margin" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/iv_user_image"
+                    android:layout_alignEnd="@+id/iv_user_image"
+                    android:layout_marginStart="-20dp"
+                    android:layout_marginTop="-20dp"
+                    android:src="@drawable/ic_baseline_photo_camera_24"
+                    app:tint="@color/black" />
+
+                <TextView
+                    android:id="@+id/ride_radius_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/et_ride_match_radius"
+                    android:layout_marginLeft="@dimen/text_size"
+                    android:layout_marginTop="@dimen/activity_margin_half"
+                    android:layout_marginRight="@dimen/text_size"
+                    android:fontFamily="@font/gothicregular"
+                    android:text="@string/default_your_value_is_5km_user_can_enter_a_value_upto_99km" />
+
+                <TextView
+                    android:id="@+id/change_password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/et_state"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginLeft="@dimen/text_size"
+                    android:layout_marginTop="@dimen/activity_margin_half"
+                    android:layout_marginRight="@dimen/text_size"
+                    android:fontFamily="@font/gothicregular"
+                    android:text="@string/change_password"
+                    android:textColor="@color/teal_700" />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/change_password"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/activity_small_margin"
+                    android:layout_marginTop="@dimen/activity_small_margin"
+                    android:layout_marginRight="@dimen/activity_small_margin"
+                    android:layout_marginBottom="@dimen/edit_text_heigth_40_dp"
+                    android:background="@color/primaryColour"
+                    android:backgroundTint="@color/primaryColour"
+                    android:elevation="@dimen/nav_header_vertical_spacing"
+                    app:cardCornerRadius="@dimen/nav_header_vertical_spacing">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/gothicregular"
+                        android:paddingLeft="@dimen/icon_size"
+                        android:paddingTop="@dimen/activity_horizontal_margin"
+                        android:paddingRight="@dimen/icon_size"
+                        android:paddingBottom="@dimen/activity_horizontal_margin"
+                        android:text="@string/save"
+                        android:textColor="@color/white" />
+                </androidx.cardview.widget.CardView>
+
+                <com.example.rytryde.utils.CircleImageView
+                    android:id="@+id/iv_user_image"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/text_size"
+                    android:src="@drawable/ic_baseline_account_circle_24" />
+            </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </ScrollView>
+
+</LinearLayout>

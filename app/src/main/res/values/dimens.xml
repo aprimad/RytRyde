@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <dimen name="fab_margin">16dp</dimen>
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
@@ -44,6 +44,8 @@
     <dimen name="margin_medium">24dip</dimen>
     <dimen name="margin_very_large">30dip</dimen>
     <dimen name="margin_huge">40dip</dimen>
+    <dimen name="edit_text_heigth_40_dp">40dp</dimen>
+    <dimen name="dp_100">100dp</dimen>
 
 
 </resources>
