@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".CompleteDetailsActivity">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/activity_double_horizontal_margin"
+        android:src="@mipmap/logo_walk_screen" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/appbar_padding_top"
+        android:fontFamily="@font/gothicbold"
+        android:text="@string/app_name"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_double_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_double_horizontal_margin"
+        android:fontFamily="@font/gothicbold"
+        android:text="@string/complete_your_details"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/activity_double_horizontal_margin"
+        android:fontFamily="@font/gothicregular"
+        android:text="@string/please_put_in_your_name"
+        android:textColor="@color/green" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/activity_double_horizontal_margin"
+        android:text="@string/first_name"
+        android:layout_marginEnd="@dimen/activity_double_horizontal_margin"
+        android:fontFamily="@font/gothicregular"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_marginTop="@dimen/text_size"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/activity_double_horizontal_margin"
+        android:fontFamily="@font/gothicregular"
+        android:text="@string/please_enter_your_email"
+        android:textColor="@color/green" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/activity_double_horizontal_margin"
+        android:text="example@email.com"
+        android:inputType="textEmailAddress"
+        android:layout_marginEnd="@dimen/activity_double_horizontal_margin"
+        android:fontFamily="@font/gothicregular"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/text_size"
+        android:layout_marginStart="@dimen/activity_double_horizontal_margin"
+        android:fontFamily="@font/gothicregular"
+        android:text="Choose your password"
+        android:textColor="@color/green" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/activity_double_horizontal_margin"
+        android:text="First Name"
+        android:inputType="textPassword"
+        android:drawableEnd="@drawable/ic_view_password"
+        android:layout_marginEnd="@dimen/activity_double_horizontal_margin"
+        android:fontFamily="@font/gothicregular"
+        android:textColor="@color/black" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_continue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/activity_double_horizontal_margin"
+        android:layout_marginTop="@dimen/dp_100"
+        android:layout_marginRight="@dimen/activity_double_horizontal_margin"
+        android:background="@color/primaryColour"
+        app:cardBackgroundColor="@color/green"
+        app:cardCornerRadius="@dimen/nav_header_vertical_spacing">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/gothicbold"
+            android:gravity="center"
+            android:paddingTop="@dimen/activity_horizontal_margin"
+            android:paddingBottom="@dimen/activity_horizontal_margin"
+            android:text="@string/sign_up"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/white" />
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

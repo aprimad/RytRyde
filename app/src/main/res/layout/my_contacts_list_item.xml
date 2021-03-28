@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/activity_vertical_margin"
+    android:layout_marginTop="@dimen/text_size"
+    android:layout_marginEnd="@dimen/text_size"
+    android:background="@color/white"
+    android:backgroundTint="@color/white"
+    android:paddingTop="@dimen/text_size"
+    app:cardCornerRadius="@dimen/nav_header_vertical_spacing">
+
+    <LinearLayout
+        android:id="@+id/ll_faq_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/activity_vertical_margin"
+        android:paddingTop="@dimen/text_size"
+        android:paddingEnd="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/text_size">
+
+        <com.example.rytryde.utils.CircleImageView
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:src="@drawable/ic_baseline_account_circle_24"/>
+
+        <TextView
+            android:layout_marginLeft="@dimen/text_size"
+            android:layout_gravity="center"
+            android:id="@+id/tv_faq_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/gothicregular"
+            android:text="Juan Scher"
+            android:textColor="@color/black"
+            android:textSize="@dimen/activity_subheading_text_size"
+            app:drawableEndCompat="@drawable/ic_baseline_add_moderator_24" />
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

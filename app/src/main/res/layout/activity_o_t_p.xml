@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradiant_bg"
+    tools:context=".ResetPassword">
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="@dimen/text_size"
+        android:layout_marginTop="@dimen/text_size"
+        android:src="@mipmap/logo_walk_screen" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/txt_we_are_there"
+        android:layout_marginLeft="@dimen/text_size"
+        android:layout_marginRight="@dimen/text_size"
+        android:fontFamily="@font/gothicbold"
+        android:text="@string/reset_password___"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/txt_we_are_there"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/txt_enter_and_confirm_new_password"
+        android:layout_marginLeft="@dimen/text_size"
+        android:layout_marginRight="@dimen/text_size"
+        android:fontFamily="@font/gothicbold"
+        android:text="@string/we_are_almost_there"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/txt_enter_and_confirm_new_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/password_card"
+        android:layout_margin="@dimen/text_size"
+        android:fontFamily="@font/gothicregular"
+        android:text="@string/please_enter_the_otp_that_we_send_to_your_registered_number"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/txt_already_have_an_acc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="@dimen/text_size"
+        android:layout_marginBottom="@dimen/text_size"
+        android:fontFamily="@font/gothicregular"
+        android:text="@string/already_have_an_account"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/black" />
+
+
+    <TextView
+        android:id="@+id/txt_sign_in"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginBottom="@dimen/text_size"
+        android:layout_toEndOf="@id/txt_already_have_an_acc"
+        android:fontFamily="@font/gothicregular"
+        android:text="@string/sign_in"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/green" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/password_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="@dimen/text_size"
+        android:layout_marginRight="@dimen/text_size"
+        app:cardCornerRadius="@dimen/nav_header_vertical_spacing"
+        app:cardElevation="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/text_size"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/edit_text_heigth_40_dp">
+
+            <TextView
+                android:id="@+id/otp_1"
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="@dimen/text_size"
+                android:layout_marginRight="@dimen/text_size"
+                android:background="@drawable/light_blue_round_corner_bg"
+                android:fontFamily="@font/gothicregular"
+                android:gravity="center"
+                android:hint="0"
+                android:padding="@dimen/activity_small_margin" />
+
+            <TextView
+                android:id="@+id/otp_2"
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="@dimen/text_size"
+                android:layout_marginRight="@dimen/text_size"
+                android:layout_toRightOf="@+id/otp_1"
+                android:background="@drawable/light_blue_round_corner_bg"
+                android:fontFamily="@font/gothicregular"
+                android:gravity="center"
+                android:hint="0"
+                android:padding="@dimen/activity_small_margin" />
+
+            <TextView
+                android:id="@+id/otp_3"
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="@dimen/text_size"
+                android:layout_marginRight="@dimen/text_size"
+                android:layout_toRightOf="@+id/otp_2"
+                android:background="@drawable/light_blue_round_corner_bg"
+                android:fontFamily="@font/gothicregular"
+                android:gravity="center"
+                android:hint="0"
+                android:padding="@dimen/activity_small_margin" />
+
+            <TextView
+                android:id="@+id/otp_4"
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="@dimen/text_size"
+                android:layout_marginRight="@dimen/text_size"
+                android:layout_toRightOf="@+id/otp_3"
+                android:background="@drawable/light_blue_round_corner_bg"
+                android:fontFamily="@font/gothicregular"
+                android:gravity="center"
+                android:hint="0"
+                android:padding="@dimen/activity_small_margin" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/otp_4"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="@dimen/text_size"
+                android:layout_marginBottom="@dimen/text_size"
+                android:fontFamily="@font/gothicregular"
+                android:text="@string/resend_otp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/green" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/otp_4"
+                android:layout_alignEnd="@+id/otp_4"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="@dimen/text_size"
+                android:layout_marginEnd="0dp"
+                android:layout_marginBottom="@dimen/text_size"
+                android:fontFamily="@font/gothicregular"
+                android:text="01:20"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                />
+
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/password_card"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="-30dp"
+        android:layout_marginRight="@dimen/activity_double_horizontal_margin"
+        android:src="@drawable/ic_baseline_arrow_forward_24"
+        android:tint="@color/white"
+        app:backgroundTint="@color/purple_700"
+        app:elevation="10dp"
+        app:fabSize="auto" />
+
+</RelativeLayout>

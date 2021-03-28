@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bottom_sheet_bg"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/activity_small_margin"
+    android:paddingBottom="@dimen/activity_small_margin"
+    app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_small_margin"
+        android:layout_marginTop="@dimen/activity_small_margin"
+        android:layout_marginRight="@dimen/activity_small_margin"
+        android:fontFamily="@font/gothicbold"
+        android:gravity="center"
+        android:text="@string/your_vehicle_details_are_saved"
+        android:textColor="@color/black"
+        android:textSize="@dimen/activity_heading_text_size" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_small_margin"
+        android:layout_marginTop="@dimen/activity_small_margin"
+        android:layout_marginRight="@dimen/activity_small_margin"
+        android:fontFamily="@font/gothicregular"
+        android:gravity="center"
+        android:text="@string/it_s_great_to_have_you_can_board_ndon_t_be_shy_create_some_rytryde_and_get_in_touch_if_you_have_any_suggestions"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_small_margin"
+        android:layout_marginTop="@dimen/activity_small_margin"
+        android:layout_marginRight="@dimen/activity_small_margin"
+        android:fontFamily="@font/gothicbold"
+        android:gravity="center"
+        android:text="@string/thank_you"
+        android:textColor="@color/black"
+        android:textSize="@dimen/activity_heading_text_size" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/activity_small_margin"
+        android:layout_marginTop="@dimen/activity_small_margin"
+        android:layout_marginRight="@dimen/activity_small_margin"
+        android:background="@color/primaryColour"
+        android:backgroundTint="@color/primaryColour"
+        android:elevation="@dimen/nav_header_vertical_spacing"
+        app:cardCornerRadius="@dimen/nav_header_vertical_spacing">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/gothicbold"
+            android:paddingLeft="@dimen/icon_size"
+            android:paddingTop="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/icon_size"
+            android:paddingBottom="@dimen/activity_horizontal_margin"
+            android:text="@string/ok"
+            android:textColor="@color/white" />
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

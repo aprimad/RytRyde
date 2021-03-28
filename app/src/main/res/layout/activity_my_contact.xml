@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/contact_us_bg"
+    android:orientation="vertical"
+    tools:context=".ContactUsActivity">
+
+    <RelativeLayout
+        android:id="@+id/rl_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/toolbar_bg">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/activity_small_margin"
+            android:src="@drawable/ic_back"
+            app:tint="@color/black" />
+
+        <ImageView
+            android:id="@+id/iv_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:padding="@dimen/activity_small_margin"
+            android:src="@drawable/ic_baseline_search_24"
+            app:tint="@color/black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/iv_back"
+            android:fontFamily="@font/gothicbold"
+            android:gravity="center"
+            android:paddingTop="@dimen/activity_small_margin"
+            android:text="@string/my_contacts"
+            android:textColor="@color/black"
+            android:textSize="@dimen/activity_subheading_text_size" />
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/tv_faq_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_toolbar"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/text_size"
+        android:layout_marginTop="@dimen/text_size"
+        android:layout_marginEnd="@dimen/text_size"
+        android:fontFamily="@font/gothicregular"
+        android:text="@string/trusted"
+        android:textColor="@color/black"
+        android:textSize="@dimen/activity_subheading_text_size"
+        app:drawableEndCompat="@drawable/ic_baseline_add_moderator_24" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_faq_title"
+        tools:itemCount="4"
+        tools:listitem="@layout/my_contacts_list_item" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="@dimen/text_size"
+        app:elevation="10dp"
+        android:layout_marginBottom="@dimen/text_size"
+        android:padding="@dimen/text_size"
+        android:src="@drawable/ic_add_contact_white"
+        android:tint="@color/white"
+        app:backgroundTint="@color/purple_700" />
+
+</RelativeLayout>

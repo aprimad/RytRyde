@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/contact_us_bg"
+    android:orientation="vertical"
+    tools:context=".ContactUsActivity">
+
+    <RelativeLayout
+        android:id="@+id/rl_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/toolbar_bg">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/activity_small_margin"
+            android:src="@drawable/ic_back"
+            app:tint="@color/black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/iv_back"
+            android:fontFamily="@font/gothicbold"
+            android:gravity="center"
+            android:paddingTop="@dimen/activity_small_margin"
+            android:text="@string/create_group"
+            android:textColor="@color/black"
+            android:textSize="@dimen/activity_subheading_text_size" />
+
+        <TextView
+            android:id="@+id/iv_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:fontFamily="@font/gothicregular"
+            android:padding="@dimen/activity_small_margin"
+            android:text="@string/save"
+            android:textColor="@color/teal_700"
+            app:tint="@color/black" />
+
+    </RelativeLayout>
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_below="@+id/rl_toolbar"
+        android:id="@+id/group_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/text_size"
+        android:layout_marginTop="@dimen/text_size"
+        android:layout_marginRight="@dimen/text_size"
+        app:cardCornerRadius="@dimen/nav_header_vertical_spacing"
+        app:cardElevation="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_small_margin"
+            android:orientation="vertical">
+
+          <ImageView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center"
+              android:padding="@dimen/activity_double_horizontal_margin"
+              android:background="@drawable/circle_gray_bg"
+              android:src="@drawable/ic_baseline_photo_camera_24"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/text_size"
+                android:layout_marginTop="@dimen/text_size"
+                android:layout_marginRight="@dimen/text_size"
+                android:background="@drawable/light_blue_round_corner_bg"
+                android:fontFamily="@font/gothicregular"
+                android:hint="@string/enter_group_name"
+                android:padding="@dimen/activity_small_margin" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/text_size"
+                android:layout_marginTop="@dimen/text_size"
+                android:layout_marginRight="@dimen/text_size"
+                android:layout_marginBottom="@dimen/text_size"
+                android:background="@drawable/light_blue_round_corner_bg"
+                android:fontFamily="@font/gothicregular"
+                android:hint="@string/add_subject"
+                android:padding="@dimen/activity_small_margin" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tv_add_partcipant"
+        android:layout_below="@+id/group_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/add_participants"
+        android:textColor="@color/black"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_marginLeft="@dimen/text_size"
+        android:layout_marginTop="@dimen/text_size"
+        android:layout_marginRight="@dimen/text_size"
+        android:fontFamily="@font/gothicbold"
+        app:drawableEndCompat="@drawable/ic_baseline_search_24" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:itemCount="2"
+        android:layout_below="@+id/tv_add_partcipant"
+        tools:listitem="@layout/my_contacts_list_item" />
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        app:backgroundTint="@color/purple_700"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/text_size"
+        android:layout_marginRight="@dimen/text_size"
+        android:src="@drawable/ic_add_contact_white"/>
+
+</RelativeLayout>

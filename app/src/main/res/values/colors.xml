@@ -7,6 +7,7 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
+    <color name="green">#618B21</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="grey">#808080</color>
@@ -133,4 +134,5 @@
     <color name="material_purple_a400">#D500F9</color>
     <color name="material_purple_a700">#AA00FF</color>
     <color name="contact_us_bg">#F2F8FB</color>
+    <color name="light_grey">#e3e3e3</color>
 </resources>
