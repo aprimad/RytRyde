@@ -133,5 +133,7 @@
     <color name="material_purple_a200">#E040FB</color>
     <color name="material_purple_a400">#D500F9</color>
     <color name="material_purple_a700">#AA00FF</color>
+    <color name="green">#618B21</color>
     <color name="contact_us_bg">#F2F8FB</color>
-    </resources>
+    <color name="light_grey">#e3e3e3</color>
+</resources>

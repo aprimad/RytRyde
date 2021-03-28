@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/contact_us_bg"
+    android:orientation="vertical"
+    tools:context=".ContactUsActivity">
+
+    <RelativeLayout
+        android:id="@+id/rl_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/toolbar_bg">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_back"
+            android:layout_marginLeft="@dimen/edit_text_heigth_40_dp"
+            android:layout_marginTop="@dimen/activity_small_margin"
+            android:layout_marginRight="@dimen/edit_text_heigth_40_dp"
+            android:layout_marginBottom="@dimen/text_size"
+            android:background="@drawable/light_blue_round_corner_bg"
+            android:drawableEnd="@drawable/ic_baseline_search_24"
+            android:fontFamily="@font/gothicregular"
+            android:hint="@string/search_group"
+            android:padding="@dimen/activity_small_margin" />
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/activity_small_margin"
+            android:src="@drawable/ic_back"
+            app:tint="@color/black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/iv_back"
+            android:fontFamily="@font/gothicbold"
+            android:gravity="center"
+            android:paddingTop="@dimen/activity_small_margin"
+            android:text="@string/my_group"
+            android:textColor="@color/black"
+            android:textSize="@dimen/activity_subheading_text_size" />
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_toolbar"
+        tools:itemCount="4"
+        tools:listitem="@layout/my_group_list_item" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="@dimen/text_size"
+        android:layout_marginBottom="@dimen/text_size"
+        android:src="@mipmap/ic_nav_contacts"
+        app:backgroundTint="@color/purple_700"
+        app:fabSize="normal" />
+
+
+</RelativeLayout>
