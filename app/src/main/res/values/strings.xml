@@ -12,8 +12,18 @@
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
 
-    <string name="title_activity_login">LoginActivity</string>
+    <string-array name="onboarder_title">
+        <item>Hey there! We don"'"t charge per ride!</item>
+        <item>The Alternative to On Demand</item>
+        <item>It Makes Sense</item>
+    </string-array>
 
+    <string-array name="onboarder_desc">
+        <item>With RytRyde you drive or ride with a friend.</item>
+        <item>We will try to match your journey with one of your trusted connections.</item>
+        <item>By matching your journey with that of a friend, our partnership helps the environment and you save by travelling together.</item>
+    </string-array>
+    <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Enter Email Address</string>
     <string name="prompt_password">Enter Password</string>
     <string name="action_sign_in">Sign in</string>
@@ -116,7 +126,6 @@
     <string name="delete_group">Delete Group</string>
     <string name="my_phonebook">My Phonebook</string>
     <string name="add">Add</string>
-
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="offered_rides">Offered rides</string>
     <string name="requested_rides">Requested Rides</string>
@@ -134,14 +143,13 @@
     <string name="select_your_subject">Select your Subject</string>
     <string name="message">Message</string>
     <string name="submit">Submit</string>
-    <string-array name="onboarder_title">
-        <item>Hey there! We don"'"t charge per ride!</item>
-        <item>The Alternative to On Demand</item>
-        <item>It Makes Sense</item>
-    </string-array>
-    <string-array name="onboarder_desc">
-        <item>With RytRyde you drive or ride with a friend.</item>
-        <item>We will try to match your journey with one of your trusted connections.</item>
-        <item>By matching your journey with that of a friend, our partnership helps the environment and you save by travelling together.</item>
-    </string-array>
+    <string name="contactUs">Contact Us</string>
+    <string name="joinGroup">Join Group</string>
+    <string name="upcoming_rides_header">Let"'"s find a match for your journey.</string>
+    <string name="upcoming_rides_subheader">You can offer or request a ride with your contacts!</string>
+    <string name="dateplaceholder">28th May 2020 at xx:xxPM</string>
+    <string name="item_status_placeholder">Complete</string>
+    <string name="item_pickup_placeholder">JBC3, Cluster Y, JLT</string>
+    <string name="card_rider_placeholder">3 riders</string>
+    <string name="card_ridestatus_label">15 minute waiting</string>
 </resources>

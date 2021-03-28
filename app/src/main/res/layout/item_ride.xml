@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rideCardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/dateLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_small"
+                android:fontFamily="@font/gothicbold"
+                android:text="@string/dateplaceholder"
+                android:textColor="@color/material_gray_900"
+                android:textSize="@dimen/normal_text_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/statusLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="@dimen/margin_small"
+                android:fontFamily="@font/gothicregular"
+                android:text="@string/item_status_placeholder"
+                android:textColor="@color/material_green_400"
+                android:textSize="@dimen/normal_text_size" />
+
+            <View
+
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/dateLabel"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="@dimen/margin_tiny"
+                android:layout_marginRight="@dimen/margin_tiny"
+                android:background="@color/material_gray_050" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+
+            <TextView
+                android:id="@+id/startingPointLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_small"
+                android:drawablePadding="@dimen/margin_small"
+                android:fontFamily="@font/gothicbold"
+                android:text="@string/item_pickup_placeholder"
+                android:textSize="@dimen/normal_text_size"
+                android:textStyle="bold"
+                app:drawableStartCompat="@mipmap/ic_card_start" />
+
+
+            <TextView
+                android:id="@+id/endingPointLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/startingPointLabel"
+                android:layout_margin="@dimen/margin_small"
+                android:drawablePadding="@dimen/margin_small"
+                android:fontFamily="@font/gothicbold"
+                android:text="@string/item_pickup_placeholder"
+                android:textSize="@dimen/normal_text_size"
+                android:textStyle="bold"
+                app:drawableStartCompat="@mipmap/ic_card_destination" />
+
+            <View
+
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/endingPointLabel"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="@dimen/margin_tiny"
+                android:layout_marginRight="@dimen/margin_tiny"
+                android:background="@color/material_gray_050" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/riderLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_small"
+                android:fontFamily="@font/gothicbold"
+                android:text="@string/card_rider_placeholder"
+                android:textColor="@color/hot_pink"
+                android:textSize="@dimen/normal_text_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/ridestatusLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="@dimen/margin_small"
+                android:fontFamily="@font/gothicregular"
+                android:text="@string/card_ridestatus_label"
+                android:textSize="@dimen/normal_text_size" />
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
