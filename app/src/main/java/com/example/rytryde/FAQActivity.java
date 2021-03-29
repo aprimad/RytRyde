@@ -6,6 +6,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -27,6 +28,7 @@ import okhttp3.Response;
 public class FAQActivity extends AppCompatActivity {
 
     Toolbar tb_cms;
+    TextView tv_cms_toolbar;
     private boolean isLoading = false;
     private boolean isLastPage = false;
     private int currentPage = 1;
@@ -42,10 +44,13 @@ public class FAQActivity extends AppCompatActivity {
 
         RecyclerView rv_faq = findViewById(R.id.rv_faq);
         tb_cms = findViewById(R.id.cmsToolbar);
+        tv_cms_toolbar = findViewById(R.id.cmsToolbarTitle);
 
         setSupportActionBar(tb_cms);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        tv_cms_toolbar.setText(R.string.faq);
+
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(FAQActivity.this, LinearLayoutManager.VERTICAL, false);
         faqItemAdapter = new FAQItemAdapter(FAQActivity.this);
@@ -81,6 +86,12 @@ public class FAQActivity extends AppCompatActivity {
     private void loadNextPage() {
         new AsyncFAQ(false, CmsDataService.getNextFAQPageURL());
 
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 
     public class AsyncFAQ extends AsyncTask<String, String, String> {

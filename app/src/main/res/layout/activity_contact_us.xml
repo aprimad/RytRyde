@@ -60,16 +60,23 @@
             android:layout_margin="@dimen/activity_vertical_margin"
             android:orientation="vertical">
 
-            <EditText
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/edit_text_heigth_40_dp"
-                android:background="@drawable/light_blue_round_corner_bg"
-                android:drawableEnd="@drawable/ic_drop_down"
-                android:fontFamily="@font/gothicregular"
-                android:drawableTint="@color/black"
-                android:textColorHint="@android:color/darker_gray"
-                android:hint="@string/select_your_subject"
-                android:padding="@dimen/nav_header_vertical_spacing" />
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:background="@drawable/light_blue_round_corner_bg">
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    style="@style/Widget.AppCompat.Spinner.DropDown"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edit_text_heigth_40_dp"
+                    android:fontFamily="@font/gothicregular"
+                    android:drawableTint="@color/black"
+                    android:textColorHint="@android:color/darker_gray"
+                    android:padding="@dimen/nav_header_vertical_spacing"
+                    android:promt="@string/select_your_subject"
+                    android:spinnerMode="dropdown" />
+            </RelativeLayout>
 
             <EditText
                 android:layout_width="match_parent"
