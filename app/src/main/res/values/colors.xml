@@ -14,6 +14,7 @@
     <color name="google_red">#DD4B39</color>
     <color name="fb_blue">#3b5998</color>
     <color name="hot_pink">#FF69B4</color>
+    <color name="darker_gray">#aaa</color>
 
 
     <!-- Material Color Palette -->

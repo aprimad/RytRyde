@@ -12,4 +12,8 @@ public interface ICmsService {
     Response faq(int page, int limit);
 
     Response loadNextFAQPage(String nextURL);
+
+    Response getSubjectList();
+
+    Response contactUs(int subjectID, String message);
 }

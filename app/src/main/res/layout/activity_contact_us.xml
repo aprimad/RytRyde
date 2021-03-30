@@ -8,39 +8,10 @@
     android:orientation="vertical"
     tools:context=".ContactUsActivity">
 
-    <RelativeLayout
-        android:id="@+id/rl_toolbar"
+    <include
+        layout="@layout/toolbar_cms"
         android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
-        android:background="@color/white">
-
-        <ImageView
-            android:id="@+id/iv_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/activity_small_margin"
-            android:src="@drawable/ic_back"
-            app:tint="@color/black" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="25dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:src="@mipmap/logo_walk_screen" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/iv_back"
-            android:fontFamily="@font/gothicbold"
-            android:gravity="center"
-            android:text="@string/contact_us"
-            android:textColor="@color/black"
-            android:textSize="@dimen/activity_subheading_text_size" />
-
-    </RelativeLayout>
+        android:layout_height="wrap_content" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -63,22 +34,24 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="8dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
                 android:background="@drawable/light_blue_round_corner_bg">
 
                 <androidx.appcompat.widget.AppCompatSpinner
                     style="@style/Widget.AppCompat.Spinner.DropDown"
+                    android:id="@+id/subjectSpinner"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/edit_text_heigth_40_dp"
                     android:fontFamily="@font/gothicregular"
                     android:drawableTint="@color/black"
                     android:textColorHint="@android:color/darker_gray"
-                    android:padding="@dimen/nav_header_vertical_spacing"
-                    android:promt="@string/select_your_subject"
+
                     android:spinnerMode="dropdown" />
             </RelativeLayout>
 
             <EditText
+                android:id="@+id/contactMessageET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
@@ -92,6 +65,7 @@
                 android:padding="@dimen/nav_header_vertical_spacing" />
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/submitCV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

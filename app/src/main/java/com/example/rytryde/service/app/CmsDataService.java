@@ -6,12 +6,15 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.example.rytryde.App;
+import com.example.rytryde.data.model.ContactUsSubject;
 import com.example.rytryde.data.model.FAQData;
 import com.example.rytryde.data.model.FAQItemData;
 import com.example.rytryde.data.model.TermsAndConditions;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CmsDataService {
@@ -21,6 +24,7 @@ public class CmsDataService {
     private static final String PRIVACY_POLICY = "pp";
     private static final String ABOUT_US = "ac";
     private static final String FAQ = "faq";
+    private static final String CONTACT_SUBJECT = "contact_subject";
 
     private static Gson gson = new GsonBuilder().create();
 
@@ -105,6 +109,48 @@ public class CmsDataService {
         Log.e("faq", faqData.getFirst_page_url());
 
         return faqData.getData();
+    }
+
+    public static void saveContactSubject(String data) {
+        SharedPreferences preferences = App.getApp().getSharedPreferences(SETTINGS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(CONTACT_SUBJECT, data);
+        editor.commit();
+    }
+
+    public static List<String> getContactSubject() {
+        List<ContactUsSubject> contactUsSubjectList;
+        List<String> subject = new ArrayList<>();
+        SharedPreferences preferences = App.getApp().getSharedPreferences(SETTINGS_NAME, Context.MODE_PRIVATE);
+        String sessionId = preferences.getString(CONTACT_SUBJECT, null);
+        if (TextUtils.isEmpty(sessionId)) {
+            return null;
+        } else
+            contactUsSubjectList = gson.fromJson(sessionId, new TypeToken<ArrayList<ContactUsSubject>>() {
+            }.getType());
+
+        for (ContactUsSubject subjectV : contactUsSubjectList) {
+            if (subjectV.getStatus().equals("active"))
+                subject.add(subjectV.getSubject());
+        }
+
+        return subject;
+    }
+
+    public static int getContactSubjectID(int pos) {
+        List<ContactUsSubject> contactUsSubjectList;
+        int subjectID = 0;
+        SharedPreferences preferences = App.getApp().getSharedPreferences(SETTINGS_NAME, Context.MODE_PRIVATE);
+        String sessionId = preferences.getString(CONTACT_SUBJECT, null);
+        if (TextUtils.isEmpty(sessionId)) {
+            return 0;
+        } else
+            contactUsSubjectList = gson.fromJson(sessionId, new TypeToken<ArrayList<ContactUsSubject>>() {
+            }.getType());
+
+        subjectID = contactUsSubjectList.get(pos).getId();
+
+        return subjectID;
     }
 
 }

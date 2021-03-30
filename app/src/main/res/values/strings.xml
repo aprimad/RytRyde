@@ -73,6 +73,10 @@
     <string name="submit">Submit</string>
     <string name="loading">Loading</string>
     <string name="no_rating_and_reviews_found">No rating and reviews found</string>
+    <string name="incompletedata">Incomplete Data</string>
+    <string name="entermessagechoosesubject">Please enter a message and choose a subject</string>
+    <string name="success">Success</string>
+    <string name="thankyou">"Thank you for reaching out to us. "</string>
     <string-array name="onboarder_title">
         <item>Hey there! We don"'"t charge per ride!</item>
         <item>The Alternative to On Demand</item>
