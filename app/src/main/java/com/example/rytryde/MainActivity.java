@@ -4,10 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -18,12 +20,16 @@ import com.example.rytryde.fragments.UpcomingRidesFragment;
 import com.example.rytryde.utils.AsyncUpcomingRides;
 import com.example.rytryde.adapters.TabAdapter;
 import com.google.android.material.bottomappbar.BottomAppBar;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     Fragment upcomingRides, ratingReview;
+    CardView submenuCV;
+    FloatingActionButton rideFAB;
+    private boolean fabExpanded = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +45,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tablayout);
         TabAdapter adapter = new TabAdapter(getSupportFragmentManager());
+        CardView offerRide = findViewById(R.id.offerRideCV);
+        CardView requestRide = findViewById(R.id.requestRidesCV);
+        rideFAB = findViewById(R.id.rideFAB);
+        submenuCV = findViewById(R.id.fabSubmenuCV);
         //SwipeRefreshLayout pullToRefresh = findViewById(R.id.pullToRefresh);
 
         upcomingRides = new UpcomingRidesFragment();
@@ -69,8 +79,41 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
 
+        rideFAB.setOnClickListener(v -> {
+            if (fabExpanded)
+                closeFab();
+            else expandFab();
+        });
+
+        offerRide.setOnClickListener(v -> {
+            Intent i = new Intent(MainActivity.this, RideActivity.class);
+            i.putExtra("caller", "Offer");
+            startActivity(i);
+        });
+
+        requestRide.setOnClickListener(v -> {
+            Intent i = new Intent(MainActivity.this, RideActivity.class);
+            i.putExtra("caller", "Request");
+            startActivity(i);
+        });
 
     }
+
+    public void expandFab() {
+
+        submenuCV.setVisibility(View.VISIBLE);
+        rideFAB.setImageResource(R.mipmap.ic_close);
+        fabExpanded = true;
+
+    }
+
+    public void closeFab() {
+        submenuCV.setVisibility(View.GONE);
+        rideFAB.setImageResource(R.mipmap.ic_ride);
+        fabExpanded = false;
+
+    }
+
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override

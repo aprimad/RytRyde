@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:orientation="vertical"
+    tools:context=".RideActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="0.005"
+        android:orientation="horizontal"
+        android:padding="@dimen/activity_large_margin">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/activity_large_margin"
+            android:src="@mipmap/ic_card_start" />
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/et_location_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/light_blue_round_corner_bg"
+                android:fontFamily="@font/gothicregular"
+                android:hint="@string/set_a_location_on_map_or_enter_to_search"
+
+                android:paddingStart="@dimen/activity_small_margin"
+                android:paddingTop="@dimen/activity_small_margin"
+                android:paddingEnd="@dimen/activity_large_margin"
+                android:paddingBottom="@dimen/activity_small_margin"
+                android:singleLine="true"
+                android:textSize="@dimen/normal_text_size" />
+
+            <Button
+                android:id="@+id/places_autocomplete_clear_button"
+                android:layout_width="@dimen/activity_small_margin"
+                android:layout_height="@dimen/activity_small_margin"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/ic_outline_close_24"
+                android:visibility="gone" />
+
+        </FrameLayout>
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/confirm_address_map_wrapper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.995">
+
+        <fragment
+            android:id="@+id/map_locationActivity"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".LocationActivity" />
+        <!-- Image View that acts as map marker notice centerInParent-->
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            android:layout_centerInParent="true" />
+
+
+        <ImageView
+            android:id="@+id/confirm_address_map_custom_marker"
+            android:layout_width="@dimen/icon_size_small"
+            android:layout_height="@dimen/icon_size_small"
+            android:layout_above="@+id/view"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/ic_card_start" />
+    </RelativeLayout>
+
+</LinearLayout>

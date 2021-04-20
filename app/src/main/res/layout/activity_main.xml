@@ -85,7 +85,19 @@
 -->
 
 
+    <include
+        android:id="@+id/fabSubmenuCV"
+        layout="@layout/fab_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp_100"
+        android:visibility="gone"
+        app:layout_anchor="@id/rideFAB"
+        app:layout_anchorGravity="top|center" />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/rideFAB"
+        android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="center"
@@ -93,5 +105,6 @@
         app:maxImageSize="@dimen/design_fab_size_normal"
         app:srcCompat="@mipmap/ic_ride"
         app:tint="@null" />
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
