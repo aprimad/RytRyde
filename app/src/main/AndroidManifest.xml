@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
         android:name=".App"
@@ -15,7 +16,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.RytRyde">
-        <activity android:name=".LocationActivity" />
+        <activity
+            android:name=".LocationActivity"
+            android:windowSoftInputMode="adjustResize" />
 
         <meta-data
             android:name="com.google.android.gms.version"
@@ -26,11 +29,7 @@
             android:value="${MAPS_API_KEY}" />
 
         <activity android:name=".RideActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".ContactUsActivity"
@@ -51,11 +50,21 @@
         <activity
             android:name=".ui.login.LoginActivity"
             android:label="@string/title_activity_login"
+            android:theme="@style/Theme.RytRyde.NoActionBar">
+
+        </activity>
+        <activity android:name=".MyPhonebookActivity" />
+        <activity
+            android:name=".SignUpActivity"
+            android:theme="@style/Theme.RytRyde.NoActionBar">
+
+        </activity>
+        <activity
+            android:name=".CompleteDetailsActivity"
             android:theme="@style/Theme.RytRyde.NoActionBar" />
-        <activity android:name=".MyPhonebookActivity"/>
-        <activity android:name=".SignUpActivity" />
-        <activity android:name=".CompleteDetailsActivity" />
-        <activity android:name=".VerifyMobileActivity" />
+        <activity
+            android:name=".VerifyMobileActivity"
+            android:theme="@style/Theme.RytRyde.NoActionBar" />
         <activity android:name=".AddVehicleDetailsActivity" />
         <activity android:name=".EditProfileActivity" />
         <activity android:name=".CreateGroupActivit" />
@@ -63,16 +72,23 @@
         <activity android:name=".ForgotPasswordActivity" />
         <activity android:name=".ChangePasswordActivity" />
         <activity android:name=".ResetPassword" />
-        <activity android:name=".MyContact" />
+        <activity android:name=".MyContact">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".MyGroup" />
         <activity android:name=".MyVehicle" />
         <activity android:name=".GroupMemberListingActivity" />
-        <activity android:name=".SignInActivity" />
+        <activity android:name=".SignInActivity">
+
+        </activity>
         <activity
             android:name=".OnboarderActivity"
             android:label="@string/title_activity_onboarder"
-            android:theme="@style/Theme.RytRyde.NoActionBar">
-        </activity>
+            android:theme="@style/Theme.RytRyde.NoActionBar"></activity>
 
 
         <activity

@@ -1,39 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".VerifyMobileActivity">
 
-    <EditText
-        android:id="@+id/et_phoneNumber"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txt_already_have_an_acc"
-        android:layout_marginLeft="@dimen/activity_double_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_double_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_double_horizontal_margin"
-        android:inputType="phone" />
-
-    <TextView
-        android:id="@+id/txt_already_have_an_acc"
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/phonetxt_verify_mobile_number"
-        android:layout_marginLeft="@dimen/activity_double_horizontal_margin"
-        android:layout_marginTop="@dimen/dp_100"
-        android:layout_marginRight="@dimen/activity_double_horizontal_margin"
-        android:fontFamily="@font/gothicregular"
-        android:text="@string/enter_the_pin_you_have_recived_via_sms_on_mobile_number_edit_number"
-        android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        android:textColor="@color/black" />
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/activity_double_horizontal_margin"
+        android:src="@mipmap/logo_walk_screen" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/appbar_padding_top"
+        android:fontFamily="@font/gothicbold"
+        android:text="@string/app_name"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small" />
     <TextView
         android:id="@+id/phonetxt_verify_mobile_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
         android:layout_marginTop="@dimen/activity_double_horizontal_margin"
         android:fontFamily="@font/gothicbold"
         android:text="@string/verify_mobile_number"
@@ -41,29 +34,45 @@
         android:textColor="@color/black" />
 
     <TextView
+        android:id="@+id/enter_phone_number_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/cv_continue"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/activity_small_margin"
-        android:fontFamily="@font/gothicbold"
-        android:paddingLeft="@dimen/icon_size"
-        android:paddingTop="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/icon_size"
-        android:paddingBottom="@dimen/activity_horizontal_margin"
-        android:text="@string/resend_code"
+        android:layout_marginLeft="@dimen/activity_double_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_double_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_double_horizontal_margin"
+        android:fontFamily="@font/gothicregular"
+        android:text="@string/enter_the_pin_you_have_recived_via_sms_on_mobile_number_edit_number"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        android:textColor="@color/green" />
+        android:textColor="@color/black" />
+
+    <EditText
+        android:id="@+id/et_otp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_double_horizontal_margin"
+        android:layout_marginTop="@dimen/icon_size"
+        android:layout_marginRight="@dimen/activity_double_horizontal_margin"
+        android:inputType="number"
+        android:singleLine="true" />
+
+    <TextView
+        android:id="@+id/otpEmptyTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/activity_double_horizontal_margin"
+        android:layout_marginEnd="@dimen/activity_double_horizontal_margin"
+        android:fontFamily="@font/gothicregular"
+        android:text="@string/Needs_to_be_filled"
+        android:textColor="@color/material_red_300"
+        android:visibility="gone" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_continue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/et_phoneNumber"
-        android:layout_centerHorizontal="true"
         android:layout_gravity="center"
         android:layout_marginLeft="@dimen/activity_double_horizontal_margin"
-        android:layout_marginTop="@dimen/dp_100"
+        android:layout_marginTop="@dimen/icon_size"
         android:layout_marginRight="@dimen/activity_double_horizontal_margin"
         android:background="@color/primaryColour"
         app:cardBackgroundColor="@color/green"
@@ -81,4 +90,19 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textColor="@color/white" />
     </androidx.cardview.widget.CardView>
-</RelativeLayout>
+
+    <TextView
+        android:id="@+id/resendCodeTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/activity_small_margin"
+        android:fontFamily="@font/gothicbold"
+        android:paddingLeft="@dimen/icon_size"
+        android:paddingTop="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/icon_size"
+        android:paddingBottom="@dimen/activity_horizontal_margin"
+        android:text="@string/resend_code"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/green" />
+</LinearLayout>

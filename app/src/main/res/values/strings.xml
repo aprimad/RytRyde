@@ -136,15 +136,15 @@
     <string name="upload_license_image">Upload License Image</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="verify_mobile_number">Verify Mobile Number</string>
-    <string name="enter_the_pin_you_have_recived_via_sms_on_mobile_number_edit_number">Enter the pin you have recived via SMS on mobile number. Edit number</string>
+    <string name="enter_the_pin_you_have_recived_via_sms_on_mobile_number_edit_number">Enter the pin you have received via SMS on </string>
     <string name="continue_">Continue</string>
     <string name="resend_code">Resend code</string>
     <string name="complete_your_details">Complete your details</string>
     <string name="please_put_in_your_name">Please put in your name</string>
-    <string name="please_enter_your_email">Please enter your email</string>
+    <string name="please_enter_your_email">Email</string>
     <string name="sign_up">Sign Up</string>
-    <string name="terms_and_conditions">Terms and conditions</string>
-    <string name="i_agree_to_the">I agree to the</string>
+    <string name="terms_and_conditions">&#160;Terms and conditions</string>
+    <string name="i_agree_to_the">I agree to the </string>
     <string name="hi_there_nice_to_see_you_again">Hi there! Nice to see you again.</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
@@ -177,5 +177,15 @@
     <string name="option_get_place">Get place</string>
     <string name="pick_place">Choose a place</string>
     <string name="set_a_location_on_map_or_enter_to_search">Set a location on map or enter to search</string>
+    <string name="Needs_to_be_filled">Should not be empty</string>
+    <string name="password_doesnt_match">Password does not match</string>
+    <string name="should_not_be_empty">Should not be empty</string>
+    <string name="strong_password"><![CDATA[Should be more than 6 digits and contain a digit, special, lower case & upper case character.]]></string>
+    <string name="please_put_in_your_first_name">First name</string>
+    <string name="please_put_in_your_last_name">Last name</string>
+    <string name="no_user">No user found with this email ID</string>
+    <string name="choose_your_password">Password</string>
+    <string name="confirm_your_password">Confirm password</string>
+    <string name="please_accept_terms"><![CDATA[Please accept terms & conditions]]></string>
 
 </resources>

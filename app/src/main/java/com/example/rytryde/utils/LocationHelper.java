@@ -2,6 +2,7 @@ package com.example.rytryde.utils;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -14,6 +15,9 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.example.rytryde.R;
+import com.example.rytryde.data.model.PlaceAutocomplete;
+import com.example.rytryde.service.app.LocationService;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -21,10 +25,22 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.AutocompletePrediction;
+import com.google.android.libraries.places.api.model.AutocompleteSessionToken;
+import com.google.android.libraries.places.api.model.RectangularBounds;
+import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRequest;
+import com.google.android.libraries.places.api.net.FindAutocompletePredictionsResponse;
+import com.google.android.libraries.places.api.net.PlacesClient;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 public class LocationHelper {
 
@@ -118,6 +134,8 @@ public class LocationHelper {
                             if (lastKnownLocation != null) {
                                 LatLng position = new LatLng(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude());
                                 map.moveCamera(CameraUpdateFactory.newLatLngZoom(position, DEFAULT_ZOOM));
+                                LocationHelper.getCountryName(context, lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude());
+                                LocationService.saveRecentLocation(Double.toString(lastKnownLocation.getLatitude()), Double.toString(lastKnownLocation.getLongitude()), lastKnownLocation.getProvider());
                             }
                         } else {
                             Log.d(TAG, "Current location is null. Using defaults.");
@@ -134,6 +152,47 @@ public class LocationHelper {
         }
 
         return lastKnownLocation;
+    }
+
+    /**
+     * Gets Country name from Lat & Long
+     */
+
+    public static String getCountryName(Context context, double latitude, double longitude) {
+        Geocoder geocoder = new Geocoder(context, Locale.getDefault());
+        List<Address> addresses = null;
+        try {
+            addresses = geocoder.getFromLocation(latitude, longitude, 1);
+            Address result;
+
+            if (addresses != null && !addresses.isEmpty()) {
+                return addresses.get(0).getCountryName();
+            }
+
+        } catch (IOException ignored) {
+            //do something
+        }
+        return null;
+    }
+
+    public static RectangularBounds getBounds(Location location, int mDistanceInMeters) {
+
+        double latRadian = Math.toRadians(location.getLatitude());
+
+        double degLatKm = 110.574235;
+        double degLongKm = 110.572833 * Math.cos(latRadian);
+        double deltaLat = mDistanceInMeters / 1000.0 / degLatKm;
+        double deltaLong = mDistanceInMeters / 1000.0 / degLongKm;
+
+        double minLat = location.getLatitude() - deltaLat;
+        double minLong = location.getLongitude() - deltaLong;
+        double maxLat = location.getLatitude() + deltaLat;
+        double maxLong = location.getLongitude() + deltaLong;
+
+        return RectangularBounds.newInstance(
+                new LatLng(minLat, minLong),
+                new LatLng(maxLat, maxLong));
+
     }
 
     /**
@@ -182,4 +241,70 @@ public class LocationHelper {
         return addressLine;
     }
 
+    /**
+     * Gets predictions with token.
+     */
+    public static ArrayList<PlaceAutocomplete> getPrediction(String TAG, String text, PlacesClient placesClient, AutocompleteSessionToken token) throws IOException {
+        final ArrayList<PlaceAutocomplete> predictionList = new ArrayList<>();
+
+
+        // Use the builder to create a FindAutocompletePredictionsRequest.
+        FindAutocompletePredictionsRequest request = FindAutocompletePredictionsRequest.builder()
+                .setSessionToken(token)
+                .setLocationBias(LocationHelper.getBounds(lastKnownLocation, 59000))
+                .setQuery(text.toString())
+                .build();
+
+        if (placesClient != null) {
+
+            Task<FindAutocompletePredictionsResponse> autocompletePredictions = placesClient.findAutocompletePredictions(request);
+
+            try {
+                Tasks.await(autocompletePredictions, 60, TimeUnit.SECONDS);
+            } catch (ExecutionException | InterruptedException | TimeoutException e) {
+                e.printStackTrace();
+            }
+
+            autocompletePredictions.addOnSuccessListener(findAutocompletePredictionsResponse -> {
+                if (findAutocompletePredictionsResponse != null) {
+                    for (AutocompletePrediction prediction : findAutocompletePredictionsResponse.getAutocompletePredictions()) {
+                        predictionList.add(new PlaceAutocomplete(prediction.getPlaceId(), prediction.getPrimaryText(null).toString(), prediction.getSecondaryText(null).toString()));
+                        Log.i(TAG, prediction.getPlaceId());
+                        Log.i(TAG, prediction.getPrimaryText(null).toString());
+
+                    }
+                }
+
+            });
+            placesClient.findAutocompletePredictions(request).addOnFailureListener((exception) -> {
+                if (exception instanceof ApiException) {
+                    ApiException apiException = (ApiException) exception;
+                    Log.e(TAG, "Place not found: " + apiException.getStatusCode());
+                }
+            });
+        }
+        return predictionList;
+    }
+
+
+    public static PlacesClient initialisePlaces(Context context) {
+        PlacesClient placesClient = null;
+        String apiKey = null;
+        ApplicationInfo applicationInfo = null;
+        try {
+            applicationInfo = context.getPackageManager().getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        if (applicationInfo != null) {
+            apiKey = applicationInfo.metaData.getString("com.google.android.geo.API_KEY");
+        }
+        if (!Places.isInitialized() & apiKey != null) {
+            Places.initialize(context, apiKey);
+            // Create a new Places client instance.
+            placesClient = Places.createClient(context);
+        }
+        return placesClient;
+    }
 }
+

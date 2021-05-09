@@ -35,7 +35,6 @@ public class CmsSevice implements ICmsService {
     public Response termsAndConditions() {
         Request request = new Request.Builder()
                 .url(terms_and_conditions)
-                .addHeader("authorization", "Bearer " + AppService.getUser().getAuthorization())
                 .get()
                 .build();
 
@@ -56,7 +55,6 @@ public class CmsSevice implements ICmsService {
     public Response privacyPolicy() {
         Request request = new Request.Builder()
                 .url(privacy_policy)
-                .addHeader("authorization", "Bearer " + AppService.getUser().getAuthorization())
                 .get()
                 .build();
 
@@ -77,7 +75,6 @@ public class CmsSevice implements ICmsService {
     public Response aboutUs() {
         Request request = new Request.Builder()
                 .url(about_us)
-                .addHeader("authorization", "Bearer " + AppService.getUser().getAuthorization())
                 .get()
                 .build();
 

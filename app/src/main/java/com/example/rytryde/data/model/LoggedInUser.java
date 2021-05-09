@@ -10,6 +10,7 @@ public class LoggedInUser {
     private String last_name;
     private String email;
     private String media;
+    private String profile_image;
     private String user_role;
     private String authorization;
     private String token_type;

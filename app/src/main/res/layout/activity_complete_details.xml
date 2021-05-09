@@ -33,41 +33,6 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/black" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/activity_double_horizontal_margin"
-        android:fontFamily="@font/gothicregular"
-        android:text="@string/please_put_in_your_name"
-        android:textColor="@color/green" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/activity_double_horizontal_margin"
-        android:layout_marginEnd="@dimen/activity_double_horizontal_margin"
-        android:fontFamily="@font/gothicregular"
-        android:text="@string/first_name"
-        android:textColor="@color/black" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/activity_double_horizontal_margin"
-        android:layout_marginTop="@dimen/text_size"
-        android:fontFamily="@font/gothicregular"
-        android:text="@string/please_enter_your_email"
-        android:textColor="@color/green" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/activity_double_horizontal_margin"
-        android:layout_marginEnd="@dimen/activity_double_horizontal_margin"
-        android:fontFamily="@font/gothicregular"
-        android:inputType="textEmailAddress"
-        android:text="example@email.com"
-        android:textColor="@color/black" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -78,19 +43,75 @@
         android:text="Choose your password"
         android:textColor="@color/green" />
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/passwordET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/activity_double_horizontal_margin"
+            android:layout_marginEnd="@dimen/activity_double_horizontal_margin"
+            android:fontFamily="@font/gothicregular"
+            android:inputType="textPassword"
+            android:textColor="@color/black" />
+
+        <ImageButton
+            android:id="@+id/showPasswordButton"
+            style="?android:buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="-110dp"
+            android:paddingBottom="5dp"
+            android:src="@drawable/ic_view_password" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/passwordWarningTV"
+        android:layout_marginStart="@dimen/activity_double_horizontal_margin"
+        android:layout_marginEnd="@dimen/activity_double_horizontal_margin"
+        android:fontFamily="@font/gothicregular"
+        android:text="@string/Needs_to_be_filled"
+        android:textColor="@color/material_red_300"
+        android:visibility="gone" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/activity_double_horizontal_margin"
+        android:layout_marginTop="@dimen/text_size"
+        android:fontFamily="@font/gothicregular"
+        android:text="Confirm your password"
+        android:textColor="@color/green" />
+
     <EditText
+        android:id="@+id/confirmPasswordET"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/activity_double_horizontal_margin"
         android:layout_marginEnd="@dimen/activity_double_horizontal_margin"
-        android:drawableEnd="@drawable/ic_view_password"
         android:fontFamily="@font/gothicregular"
         android:inputType="textPassword"
-        android:text="First Name"
         android:textColor="@color/black" />
 
+    <TextView
+        android:id="@+id/confirmPasswordWarningTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/activity_double_horizontal_margin"
+        android:layout_marginEnd="@dimen/activity_double_horizontal_margin"
+        android:fontFamily="@font/gothicregular"
+        android:text="@string/Needs_to_be_filled"
+        android:textColor="@color/material_red_300"
+        android:visibility="gone" />
+
     <androidx.cardview.widget.CardView
-        android:id="@+id/cv_continue"
+        android:id="@+id/cv_signup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

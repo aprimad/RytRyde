@@ -1,38 +1,39 @@
 package com.example.rytryde;
 
-import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.method.KeyListener;
 import android.util.Log;
 import android.view.View;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.rytryde.adapters.PlacesAutoCompleteAdapter;
 import com.example.rytryde.utils.LocationHelper;
-import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
-import com.google.android.libraries.places.api.Places;
-import com.google.android.libraries.places.api.model.AutocompletePrediction;
 import com.google.android.libraries.places.api.model.AutocompleteSessionToken;
-import com.google.android.libraries.places.api.model.TypeFilter;
-import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRequest;
+import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.api.net.PlacesClient;
 
 import java.io.IOException;
 
-public class LocationActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class LocationActivity extends AppCompatActivity implements OnMapReadyCallback, PlacesAutoCompleteAdapter.ClickListener {
 
     private static final String TAG = LocationActivity.class.getSimpleName();
 
@@ -41,11 +42,13 @@ public class LocationActivity extends AppCompatActivity implements OnMapReadyCal
     private Location lastKnownLocation;
     private LatLng pinLocation;
     private String addressLine;
-    private EditText addressET;
+    private AutoCompleteTextView addressET;
     private Button clearButton;
+    private PlacesAutoCompleteAdapter mAutoCompleteAdapter;
+    private RecyclerView recyclerView;
     private PlacesClient placesClient;
-    private String apiKey = null;
-    private ApplicationInfo applicationInfo = null;
+    private RelativeLayout mapLayout;
+    private AutocompleteSessionToken token;
 
 
     @Override
@@ -55,46 +58,48 @@ public class LocationActivity extends AppCompatActivity implements OnMapReadyCal
 
         getIntent();
 
+        placesClient = LocationHelper.initialisePlaces(this);
+
         addressET = findViewById(R.id.et_location_address);
         clearButton = findViewById(R.id.places_autocomplete_clear_button);
+        recyclerView = findViewById(R.id.places_recycler_view);
+        mapLayout = findViewById(R.id.confirm_address_map_wrapper);
+
+        KeyListener listener = addressET.getKeyListener();
+        addressET.setKeyListener(null);
+
 
         // Build the map.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map_locationActivity);
         mapFragment.getMapAsync(this);
 
+        mAutoCompleteAdapter = new PlacesAutoCompleteAdapter(this);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setHasFixedSize(true);
+        mAutoCompleteAdapter.setClickListener(this);
+        recyclerView.setAdapter(mAutoCompleteAdapter);
+        mAutoCompleteAdapter.notifyDataSetChanged();
 
-        addressET.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean hasFocus) {
-                if (hasFocus) {
-                    addressET.setSelection(addressET.getText().length());
-                    clearButton.setVisibility(View.VISIBLE);
-                } else {
-                    clearButton.setVisibility(View.GONE);
-                }
+        addressET.setOnFocusChangeListener((view, hasFocus) -> {
+            if (hasFocus) {
+                clearButton.setVisibility(View.VISIBLE);
+                addressET.setKeyListener(listener);
+            } else {
+                clearButton.setVisibility(View.GONE);
+                addressET.setKeyListener(null);
             }
         });
 
         clearButton.setOnClickListener(v -> {
+            // Create a new token for the autocomplete session. Pass this to FindAutocompletePredictionsRequest,
+            // and once again when the user makes a selection (for example when calling fetchPlace()).
+            token = AutocompleteSessionToken.newInstance();
             addressET.setText("");
         });
 
         LocationHelper.updateLocationUI(TAG, map, LocationActivity.this);
 
-        try {
-            applicationInfo = this.getPackageManager().getApplicationInfo(this.getPackageName(), PackageManager.GET_META_DATA);
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
-        if (applicationInfo != null) {
-            apiKey = applicationInfo.metaData.getString("com.google.android.geo.API_KEY");
-        }
-        if (!Places.isInitialized() & apiKey != null) {
-            Places.initialize(getApplicationContext(), apiKey);
-            // Create a new Places client instance.
-            placesClient = Places.createClient(this);
-        }
 
         addressET.addTextChangedListener(new TextWatcher() {
             @Override
@@ -104,39 +109,37 @@ public class LocationActivity extends AppCompatActivity implements OnMapReadyCal
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // Create a new token for the autocomplete session. Pass this to FindAutocompletePredictionsRequest,
-                // and once again when the user makes a selection (for example when calling fetchPlace()).
-                AutocompleteSessionToken token = AutocompleteSessionToken.newInstance();
-
-
-                // Use the builder to create a FindAutocompletePredictionsRequest.
-                FindAutocompletePredictionsRequest request = FindAutocompletePredictionsRequest.builder()
-                        .setTypeFilter(TypeFilter.ADDRESS)
-                        .setSessionToken(token)
-                        //.setLocationBias(lastKnownLocation)
-                        .setQuery(s.toString())
-                        .build();
-
-                placesClient.findAutocompletePredictions(request).addOnSuccessListener((response) -> {
-                    for (AutocompletePrediction prediction : response.getAutocompletePredictions()) {
-                        Log.i(TAG, prediction.getPlaceId());
-                        Log.i(TAG, prediction.getPrimaryText(null).toString());
-                    }
-                }).addOnFailureListener((exception) -> {
-                    if (exception instanceof ApiException) {
-                        ApiException apiException = (ApiException) exception;
-                        Log.e(TAG, "Place not found: " + apiException.getStatusCode());
-                    }
-                });
 
             }
 
             @Override
             public void afterTextChanged(Editable s) {
+                if (!s.toString().equals("") && addressET.getKeyListener() != null) {
+                    mAutoCompleteAdapter.setToken(token);
+                    mAutoCompleteAdapter.getFilter().filter(s.toString());
+                    Log.e(TAG, "adapter count" + Integer.toString(mAutoCompleteAdapter.getItemCount()));
 
+                    if (mAutoCompleteAdapter.getItemCount() > 0)
+                        Log.i(TAG, mAutoCompleteAdapter.getItem(0).getPrimaryText());
+                    if (recyclerView.getVisibility() == View.GONE) {
+                        recyclerView.setVisibility(View.VISIBLE);
+                        mapLayout.setVisibility(View.GONE);
+
+                    }
+                } else {
+                    if (recyclerView.getVisibility() == View.VISIBLE) {
+                        recyclerView.setVisibility(View.GONE);
+                        mapLayout.setVisibility(View.VISIBLE);
+                    }
+                }
             }
         });
 
+    }
+
+    @Override
+    public void click(Place place) {
+        Toast.makeText(this, place.getAddress() + ", " + place.getLatLng().latitude + place.getLatLng().longitude, Toast.LENGTH_SHORT).show();
     }
 
 
@@ -217,4 +220,6 @@ public class LocationActivity extends AppCompatActivity implements OnMapReadyCal
 
 
     }
+
+
 }

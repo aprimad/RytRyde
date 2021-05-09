@@ -58,8 +58,8 @@
 
     </RelativeLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv"
+    <ListView
+        android:id="@+id/rv_contacts"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/rl_toolbar"

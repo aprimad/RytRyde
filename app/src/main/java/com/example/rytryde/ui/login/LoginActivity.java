@@ -122,7 +122,7 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String response) {
             if (response != null) {
-                Log.e("response post", response);
+                Log.e("response post", "hi" + response);
                 if (!LoginActivity.this.isFinishing()) {
                     dismissProgressDialog();
                 }
@@ -131,26 +131,34 @@ public class LoginActivity extends AppCompatActivity {
 
                 try {
                   loginDetails = gson.fromJson(response, Login.class);
-                  Log.e("message", "hi"+loginDetails.getMessage());
 
-                  if(loginDetails.getSuccess()){
-                      AppService.saveUserInfo(loginDetails.getData());
-                  }
-                  else {
-                      if (!LoginActivity.this.isFinishing()) {
-                          showLoginFailedMessage();
-                          dismissProgressDialog();
-                      }
-                  }
+                    if (loginDetails.getSuccess()) {
+                        AppService.saveUserInfo(loginDetails.getData());
+                        Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                        i.putExtra("caller", "LoginActivity");
+                        startActivity(i);
+                        finish();
+                    } else if (response.equals("")) {
+                        new AlertDialog.Builder(LoginActivity.this)
+                                .setMessage(getString(R.string.no_user))
+                                .setPositiveButton(getResources().getString(R.string.ok), null)
+                                .show();
+                    } else {
+                        new AlertDialog.Builder(LoginActivity.this)
+                                .setMessage(loginDetails.getMessage())
+                                .setPositiveButton(getResources().getString(R.string.ok), null)
+                                .show();
 
+                    }
+                    if (!LoginActivity.this.isFinishing()) {
+                        showLoginFailedMessage();
+                        dismissProgressDialog();
+                    }
 
                 } catch (Exception e) {
                     Log.e("exception",e.getMessage());
                 }
-                Intent i = new Intent(LoginActivity.this, MainActivity.class);
-                i.putExtra("caller", "LoginActivity");
-                startActivity(i);
-                finish();
+
 
             }
 

@@ -25,7 +25,16 @@ public class AppService {
     private static final String USER_DATA = "user_data";
     private static final String USERNAME_ENC = "username";
     private static final String PASSWORD_ENC = "password";
+    private static final String MOBILE_NUMER = "mobile";
+    private static final String DIAL_CODE = "dial";
+    private static final String EMAIL = "email";
+    private static final String FIRST_NAME = "fname";
+    private static final String LAST_NAME = "fname";
     private static LoggedInUser user;
+    private static final String COUNTRY = "country";
+    private static final String OTP = "otp";
+    private static final String CONTACT_PERMISSION = "contact";
+
 
     public static void saveUserName(String name) {
 
@@ -127,6 +136,98 @@ public class AppService {
         return path;
     }
 
+    public static void saveMobileNumber(String mobile) {
+        SharedPreferences preferences = App.getApp().getSharedPreferences(SETTINGS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(MOBILE_NUMER, mobile);
+        editor.commit();
+    }
+
+    public static String getMobileNumber() {
+        SharedPreferences preferences = App.getApp().getSharedPreferences(SETTINGS_NAME, Context.MODE_PRIVATE);
+        String path = preferences.getString(MOBILE_NUMER, "");
+        return path;
+    }
+
+    public static void saveContactPermission(Boolean permission) {
+        SharedPreferences preferences = App.getApp().getSharedPreferences(SETTINGS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean(CONTACT_PERMISSION, permission);
+        editor.commit();
+    }
+
+    public static Boolean getContactPermission() {
+        SharedPreferences preferences = App.getApp().getSharedPreferences(SETTINGS_NAME, Context.MODE_PRIVATE);
+        Boolean path = preferences.getBoolean(CONTACT_PERMISSION, false);
+        return path;
+    }
+
+    public static void saveDialCode(String code) {
+        SharedPreferences preferences = App.getApp().getSharedPreferences(SETTINGS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(DIAL_CODE, code);
+        editor.commit();
+    }
+
+    public static String getDialCode() {
+        SharedPreferences preferences = App.getApp().getSharedPreferences(SETTINGS_NAME, Context.MODE_PRIVATE);
+        String path = preferences.getString(DIAL_CODE, "");
+        return path;
+    }
+
+    public static void saveEmail(String email) {
+        SharedPreferences preferences = App.getApp().getSharedPreferences(SETTINGS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(EMAIL, email);
+        editor.commit();
+    }
+
+    public static String getEMAIL() {
+        SharedPreferences preferences = App.getApp().getSharedPreferences(SETTINGS_NAME, Context.MODE_PRIVATE);
+        String path = preferences.getString(EMAIL, "");
+        return path;
+    }
+
+    public static void saveFirstName(String firstName) {
+        SharedPreferences preferences = App.getApp().getSharedPreferences(SETTINGS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(FIRST_NAME, firstName);
+        editor.commit();
+    }
+
+    public static String getFirstName() {
+        SharedPreferences preferences = App.getApp().getSharedPreferences(SETTINGS_NAME, Context.MODE_PRIVATE);
+        String path = preferences.getString(FIRST_NAME, "");
+        return path;
+    }
+
+    public static void saveOTP(String otp) {
+        SharedPreferences preferences = App.getApp().getSharedPreferences(SETTINGS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(OTP, otp);
+        editor.commit();
+    }
+
+    public static String getOTP() {
+        SharedPreferences preferences = App.getApp().getSharedPreferences(SETTINGS_NAME, Context.MODE_PRIVATE);
+        String path = preferences.getString(OTP, "");
+        return path;
+    }
+
+    public static void saveLastName(String lastName) {
+        SharedPreferences preferences = App.getApp().getSharedPreferences(SETTINGS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(LAST_NAME, lastName);
+        editor.commit();
+    }
+
+    public static String getLastName() {
+        SharedPreferences preferences = App.getApp().getSharedPreferences(SETTINGS_NAME, Context.MODE_PRIVATE);
+        String path = preferences.getString(LAST_NAME, "");
+        return path;
+    }
+
+
     public static void saveUserInfo(LoggedInUser user) {
         if (user == null) {
             return;
@@ -188,6 +289,24 @@ public class AppService {
             }
         }
         return user;
+    }
+
+    public static void saveUserCountry(String data) {
+
+        SharedPreferences preferences = App.getApp().getSharedPreferences(SETTINGS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(COUNTRY, data);
+        editor.commit();
+    }
+
+    public static String getUserCountry() {
+        SharedPreferences preferences = App.getApp().getSharedPreferences(SETTINGS_NAME, Context.MODE_PRIVATE);
+        String sessionId = preferences.getString(COUNTRY, null);
+
+        if (TextUtils.isEmpty(sessionId)) {
+            return null;
+        }
+        return sessionId;
     }
 
     public static void clearAll() {
