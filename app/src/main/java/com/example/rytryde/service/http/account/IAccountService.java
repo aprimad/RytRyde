@@ -16,5 +16,8 @@ public interface IAccountService {
 
     Response changePassword(String password, String confirmPassword);
 
+    Response updateProfile(String firstName, String lastName, String email, String country_code, String phoneNumber, String gender, String dob, String searchRadius, String mediaID);
+
+    //Response uploadMedia()
 
 }

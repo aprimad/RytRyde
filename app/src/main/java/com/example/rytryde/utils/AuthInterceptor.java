@@ -17,6 +17,8 @@ import static com.example.rytryde.service.http.account.AccountService.JSON;
 
 public class AuthInterceptor implements Interceptor {
 
+    private static final String TAG = "AuthInterceptor";
+
 
     @Override
     public Response intercept(Chain chain) throws IOException {
@@ -39,7 +41,7 @@ public class AuthInterceptor implements Interceptor {
             response = chain.proceed(request);
 
         } else if (response.code() == 400) {
-            Log.e("inside", "inter");
+            Log.e(TAG, "inter");
             OkHttpClient okclient1 = new OkHttpClient.Builder()/*.addInterceptor(App.getApp().getStethoInterceptor())*/
                     .build();
 
@@ -50,6 +52,7 @@ public class AuthInterceptor implements Interceptor {
             Gson gson = new Gson();
             Request request1 = new Request.Builder()
                     .url(request.url())
+
                     .post(RequestBody.create(JSON, gson.toJson(token)))
                     .build();
 

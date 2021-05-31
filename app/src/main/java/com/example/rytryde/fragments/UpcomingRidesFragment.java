@@ -61,7 +61,10 @@ public class UpcomingRidesFragment extends Fragment {
     public void refreshFragmentView() {
         upcomingRidesData = UpcomingRidesService.getUpcomingRidesData();
 
-        if (upcomingRidesData.size() == 0) {
+        if (upcomingRidesData == null) {
+            noRidesLL.setVisibility(View.VISIBLE);
+            ridesLL.setVisibility(View.GONE);
+        } else if (upcomingRidesData.size() == 0) {
             noRidesLL.setVisibility(View.VISIBLE);
             ridesLL.setVisibility(View.GONE);
         } else {

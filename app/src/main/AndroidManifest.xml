@@ -8,6 +8,11 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -51,9 +56,15 @@
             android:name=".ui.login.LoginActivity"
             android:label="@string/title_activity_login"
             android:theme="@style/Theme.RytRyde.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-        <activity android:name=".MyPhonebookActivity" />
+        <activity
+            android:name=".MyPhonebookActivity"
+            android:theme="@style/Theme.RytRyde.NoActionBar" />
         <activity
             android:name=".SignUpActivity"
             android:theme="@style/Theme.RytRyde.NoActionBar">
@@ -66,20 +77,18 @@
             android:name=".VerifyMobileActivity"
             android:theme="@style/Theme.RytRyde.NoActionBar" />
         <activity android:name=".AddVehicleDetailsActivity" />
-        <activity android:name=".EditProfileActivity" />
+        <activity
+            android:name=".EditProfileActivity"
+            android:theme="@style/Theme.RytRyde.NoActionBar" />
         <activity android:name=".CreateGroupActivit" />
         <activity android:name=".OTPActivity" />
         <activity android:name=".ForgotPasswordActivity" />
         <activity android:name=".ChangePasswordActivity" />
         <activity android:name=".ResetPassword" />
-        <activity android:name=".MyContact">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".MyContactActivity">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
-        <activity android:name=".MyGroup" />
+        <activity android:name=".MyGroupActivity" />
         <activity android:name=".MyVehicle" />
         <activity android:name=".GroupMemberListingActivity" />
         <activity android:name=".SignInActivity">
@@ -88,7 +97,7 @@
         <activity
             android:name=".OnboarderActivity"
             android:label="@string/title_activity_onboarder"
-            android:theme="@style/Theme.RytRyde.NoActionBar"></activity>
+            android:theme="@style/Theme.RytRyde.NoActionBar" />
 
 
         <activity

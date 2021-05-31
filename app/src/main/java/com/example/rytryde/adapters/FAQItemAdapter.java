@@ -10,25 +10,31 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.transition.AutoTransition;
-import androidx.transition.TransitionManager;
 
 import com.example.rytryde.R;
+import com.example.rytryde.data.model.FAQItemData;
 
 import org.jetbrains.annotations.NotNull;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class FAQItemAdapter extends RecyclerView.Adapter<FAQItemAdapter.ViewHolder> {
 
     public Activity activity;
+    private List<FAQItemData> faqList;
 
     public FAQItemAdapter(Activity activity) {
+
         this.activity = activity;
+        faqList = new LinkedList<>();
     }
 
     @NotNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public FAQItemAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
@@ -38,42 +44,61 @@ public class FAQItemAdapter extends RecyclerView.Adapter<FAQItemAdapter.ViewHold
 
     // Involves populating data into the item through holder
     @Override
-    public void onBindViewHolder(@NotNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NotNull FAQItemAdapter.ViewHolder holder, int position) {
+
+        FAQItemData FAQitem = faqList.get(position);
+        ViewHolder faqViewHolder = (ViewHolder) holder;
+        faqViewHolder.tv_faq_title.setText(FAQitem.getQuestion());
+        faqViewHolder.tv_faq_detail.setText(FAQitem.getAnswer());
 
     }
 
     // Returns the total count of items in the list
     @Override
     public int getItemCount() {
-        return 3;
+        return faqList == null ? 0 : faqList.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    public void add(FAQItemData faq) {
+        faqList.add(faq);
+        notifyItemInserted(faqList.size() - 1);
+    }
+
+    public void addAll(List<FAQItemData> faqResults) {
+        for (FAQItemData result : faqResults) {
+            add(result);
+        }
+    }
+
+    public FAQItemData getItem(int position) {
+        return faqList.get(position);
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+
+        private TextView tv_faq_detail;
+        private TextView tv_faq_title;
+        private LinearLayout ll_faq_item;
 
         @SuppressLint("ResourceAsColor")
         public ViewHolder(View itemView) {
             super(itemView);
 
-            TextView tv_faq_detail = itemView.findViewById(R.id.tv_faq_detail);
-            LinearLayout ll_faq_item = itemView.findViewById(R.id.ll_faq_item);
-            TextView tv_faq_title = itemView.findViewById(R.id.tv_faq_title);
+            tv_faq_detail = itemView.findViewById(R.id.tv_faq_detail);
+            ll_faq_item = itemView.findViewById(R.id.ll_faq_item);
+            tv_faq_title = itemView.findViewById(R.id.tv_faq_title);
 
             tv_faq_title.setOnClickListener(view -> {
                 if (tv_faq_detail.getVisibility() == View.VISIBLE) {
 
-                    TransitionManager.beginDelayedTransition(ll_faq_item,
-                            new AutoTransition());
                     tv_faq_detail.setVisibility(View.GONE);
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        tv_faq_title.setCompoundDrawables(null, null, activity.getDrawable(R.drawable.ic_add), null);
+                        tv_faq_title.setCompoundDrawablesWithIntrinsicBounds(null, null, ContextCompat.getDrawable(activity, R.drawable.ic_add), null);
                     }
                 } else {
-
-                    TransitionManager.beginDelayedTransition(ll_faq_item,
-                            new AutoTransition());
                     tv_faq_detail.setVisibility(View.VISIBLE);
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        tv_faq_title.setCompoundDrawables(null, null, activity.getDrawable(R.drawable.ic_remove), null);
+                        tv_faq_title.setCompoundDrawablesWithIntrinsicBounds(null, null, ContextCompat.getDrawable(activity, R.drawable.ic_remove), null);
                     }
                 }
             });

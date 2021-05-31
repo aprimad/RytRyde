@@ -187,5 +187,14 @@
     <string name="choose_your_password">Password</string>
     <string name="confirm_your_password">Confirm password</string>
     <string name="please_accept_terms"><![CDATA[Please accept terms & conditions]]></string>
+    <string name="please_enter_first_name">Please enter your first name</string>
+    <string name="please_enter_last_name">Please enter your last name</string>
+    <string name="please_enter_your_mobile">Please enter your mobile number</string>
+    <string name="ride_radius_threshold">Radius should not be empty or 0</string>
+    <string name="camera_or_gallery">Select Camer or Gallery</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="cancel">Cancel</string>
+    <string name="please_enter_email">Please enter your email</string>
 
 </resources>

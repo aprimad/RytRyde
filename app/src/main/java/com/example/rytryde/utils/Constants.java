@@ -1,6 +1,13 @@
 package com.example.rytryde.utils;
 
+import okhttp3.MediaType;
+
 public class Constants {
+
+    public static final String domain = "https://rytryde.com";
+    public static final String route = "/api";
+    public static final String base = domain + route;
+    public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
     public static final String TERMS_AND_CONDITIONS = "terms and conditions";
     public static final String PRIVACY_POLICY = "privacy policy";

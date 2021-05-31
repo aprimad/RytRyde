@@ -132,7 +132,8 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/activity_double_horizontal_margin"
                 android:layout_weight="1"
-                android:background="@color/light_grey"
+                android:background="@drawable/light_blue_round_corner_bg"
+                android:drawableRight="@drawable/ic_drop_down"
                 app:ccp_defaultNameCode="AE" />
 
             <EditText

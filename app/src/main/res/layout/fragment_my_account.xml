@@ -9,16 +9,18 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/dp_100">
 
         <ImageView
+            android:id="@+id/iv_edit_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:padding="@dimen/text_size"
             android:src="@drawable/ic_baseline_edit_24" />
 
-        <ImageView
+        <com.example.rytryde.utils.CircleImageView
             android:id="@+id/iv_user_profile"
             android:layout_width="72dp"
             android:layout_height="72dp"
@@ -35,6 +37,7 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/ll_mycontacts"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/text_size">
@@ -45,6 +48,7 @@
                     android:src="@mipmap/ic_nav_contacts" />
 
                 <TextView
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -62,6 +66,7 @@
                 android:background="@color/light_grey" />
 
             <LinearLayout
+                android:id="@+id/ll_offeredRides"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/text_size">
@@ -89,6 +94,7 @@
                 android:background="@color/light_grey" />
 
             <LinearLayout
+                android:id="@+id/ll_requestedrides"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/text_size">
@@ -116,6 +122,7 @@
                 android:background="@color/light_grey" />
 
             <LinearLayout
+                android:id="@+id/ll_savedaddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/text_size">
@@ -143,6 +150,7 @@
                 android:background="@color/light_grey" />
 
             <LinearLayout
+                android:id="@+id/ll_myvehicle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/text_size">
@@ -170,6 +178,7 @@
                 android:background="@color/light_grey" />
 
             <LinearLayout
+                android:id="@+id/ll_mygroups"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/text_size">
@@ -192,11 +201,13 @@
             </LinearLayout>
 
             <View
+
                 android:layout_width="wrap_content"
                 android:layout_height="1dp"
                 android:background="@color/light_grey" />
 
             <LinearLayout
+                android:id="@+id/ll_contactus"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/text_size">
@@ -224,6 +235,7 @@
                 android:background="@color/light_grey" />
 
             <LinearLayout
+                android:id="@+id/ll_joingroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/text_size">
@@ -258,6 +270,7 @@
 
 
             <LinearLayout
+                android:id="@+id/ll_rateus"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/text_size">
@@ -285,6 +298,7 @@
                 android:background="@color/light_grey" />
 
             <LinearLayout
+                android:id="@+id/ll_termsnconditions"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/text_size">
@@ -312,6 +326,7 @@
                 android:background="@color/light_grey" />
 
             <LinearLayout
+                android:id="@+id/ll_privacypolicy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/text_size">
@@ -339,6 +354,7 @@
                 android:background="@color/light_grey" />
 
             <LinearLayout
+                android:id="@+id/ll_faq"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/text_size">
@@ -366,6 +382,7 @@
                 android:background="@color/light_grey" />
 
             <LinearLayout
+                android:id="@+id/ll_whoarewe"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/text_size">

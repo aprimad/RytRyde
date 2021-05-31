@@ -9,7 +9,7 @@ public class LoggedInUser {
     private String first_name;
     private String last_name;
     private String email;
-    private String media;
+    private Media media;
     private String profile_image;
     private String user_role;
     private String authorization;
@@ -47,11 +47,11 @@ public class LoggedInUser {
         this.email = email;
     }
 
-    public String getMedia() {
+    public Media getMedia() {
         return media;
     }
 
-    public void setMedia(String media) {
+    public void setMedia(Media media) {
         this.media = media;
     }
 

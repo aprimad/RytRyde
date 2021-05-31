@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/contact_CV"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="@dimen/activity_vertical_margin"
@@ -26,18 +27,20 @@
 
         <com.example.rytryde.utils.CircleImageView
             android:id="@+id/contact_image"
-            android:layout_width="52dp"
+            android:layout_width="0dp"
             android:layout_height="52dp"
-            android:layout_weight="0.5"
+            android:layout_gravity="center"
+            android:layout_weight="0.425"
             android:src="@drawable/ic_baseline_account_circle_24" />
 
 
         <TextView
             android:id="@+id/tv_contact_title"
             android:layout_weight="1.375"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/text_size"
+            android:layout_marginStart="@dimen/activity_tiny_margin"
+            android:layout_marginEnd="@dimen/activity_tiny_margin"
             android:fontFamily="@font/gothicregular"
             android:text="Juan Scher"
             android:ellipsize="end"
@@ -47,10 +50,11 @@
             android:textSize="@dimen/activity_subheading_text_size" />
 
         <CheckBox
-            android:layout_width="wrap_content"
+            android:id="@+id/contact_CB"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.125"
-            android:gravity="center|right" />
+            android:layout_weight="0.2"
+            android:gravity="center" />
 
 
     </LinearLayout>

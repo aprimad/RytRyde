@@ -90,54 +90,31 @@
                     android:inputType="textEmailAddress"
                     android:padding="@dimen/activity_small_margin" />
 
-                <EditText
-                    android:id="@+id/et_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/et_emailAddress"
-                    android:layout_marginLeft="@dimen/text_size"
-                    android:layout_marginTop="@dimen/text_size"
-                    android:layout_marginRight="@dimen/text_size"
-                    android:background="@drawable/light_blue_round_corner_bg"
-                    android:fontFamily="@font/gothicregular"
-                    android:hint="@string/enter_password"
-                    android:inputType="textPassword"
-                    android:padding="@dimen/activity_small_margin" />
 
-                <EditText
-                    android:id="@+id/et_confirm_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/et_password"
-                    android:layout_marginLeft="@dimen/text_size"
-                    android:layout_marginTop="@dimen/text_size"
-                    android:layout_marginRight="@dimen/text_size"
-                    android:background="@drawable/light_blue_round_corner_bg"
-                    android:fontFamily="@font/gothicregular"
-                    android:hint="@string/confirm_password"
-                    android:inputType="textPassword"
-                    android:padding="@dimen/activity_small_margin" />
-
-                <EditText
+                <com.hbb20.CountryCodePicker
                     android:id="@+id/et_country_code"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/et_confirm_password"
+                    android:layout_below="@+id/et_emailAddress"
                     android:layout_marginStart="@dimen/text_size"
                     android:layout_marginTop="@dimen/text_size"
                     android:layout_marginEnd="@dimen/nav_header_vertical_spacing"
                     android:background="@drawable/light_blue_round_corner_bg"
-                    android:drawableRight="@drawable/ic_drop_down"
                     android:fontFamily="@font/gothicregular"
-                    android:hint="+91"
-                    android:padding="@dimen/activity_small_margin" />
+                    android:hint="+971"
+                    android:padding="@dimen/activity_small_margin"
+                    app:ccp_defaultNameCode="AE"
+                    app:ccp_padding="0dp"
+                    app:ccp_showFlag="false" />
 
                 <EditText
+                    android:id="@+id/mobileET"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/et_confirm_password"
+                    android:layout_below="@+id/et_emailAddress"
                     android:layout_marginTop="@dimen/text_size"
                     android:layout_marginEnd="@dimen/text_size"
+                    android:singleLine="true"
                     android:layout_toEndOf="@id/et_country_code"
                     android:background="@drawable/light_blue_round_corner_bg"
                     android:fontFamily="@font/gothicregular"
@@ -145,21 +122,21 @@
                     android:padding="@dimen/activity_small_margin" />
 
 
-                <EditText
+                <AutoCompleteTextView
                     android:id="@+id/et_gender"
-                    android:layout_width="150dp"
+                    android:layout_width="@dimen/dp_100"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/et_country_code"
                     android:layout_marginStart="@dimen/text_size"
                     android:layout_marginTop="@dimen/text_size"
                     android:layout_marginEnd="@dimen/nav_header_vertical_spacing"
                     android:background="@drawable/light_blue_round_corner_bg"
-                    android:drawableEnd="@drawable/ic_drop_down"
                     android:fontFamily="@font/gothicregular"
                     android:hint="@string/gender"
                     android:padding="@dimen/activity_small_margin" />
 
                 <EditText
+                    android:id="@+id/et_dob"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/et_country_code"
@@ -169,9 +146,14 @@
                     android:background="@drawable/light_blue_round_corner_bg"
                     android:drawableEnd="@drawable/ic_baseline_date_range_24"
                     android:drawableTint="@color/black"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:ellipsize="end"
+                    android:focusable="false"
                     android:fontFamily="@font/gothicregular"
                     android:hint="@string/date_of_birth"
                     android:maxLines="1"
+                    android:focusableInTouchMode="false"
                     android:padding="@dimen/activity_small_margin" />
 
                 <EditText
@@ -187,49 +169,9 @@
                     android:hint="@string/ride_match_radius"
                     android:padding="@dimen/activity_small_margin" />
 
-                <EditText
-                    android:id="@+id/et_country"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/ride_radius_text"
-                    android:layout_marginLeft="@dimen/text_size"
-                    android:layout_marginTop="@dimen/text_size"
-                    android:layout_marginRight="@dimen/text_size"
-                    android:background="@drawable/light_blue_round_corner_bg"
-                    android:fontFamily="@font/gothicregular"
-                    android:hint="@string/country"
-                    android:padding="@dimen/activity_small_margin" />
-
-
-                <EditText
-                    android:id="@+id/et_state"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/et_country"
-                    android:layout_marginStart="@dimen/text_size"
-                    android:layout_marginTop="@dimen/text_size"
-                    android:layout_marginEnd="@dimen/nav_header_vertical_spacing"
-                    android:background="@drawable/light_blue_round_corner_bg"
-                    android:drawableEnd="@drawable/ic_drop_down"
-                    android:fontFamily="@font/gothicregular"
-                    android:hint="@string/state"
-                    android:padding="@dimen/activity_small_margin" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/et_country"
-                    android:layout_marginTop="@dimen/text_size"
-                    android:layout_marginEnd="@dimen/text_size"
-                    android:layout_toEndOf="@id/et_gender"
-                    android:background="@drawable/light_blue_round_corner_bg"
-                    android:drawableEnd="@drawable/ic_drop_down"
-                    android:fontFamily="@font/gothicregular"
-                    android:hint="@string/city"
-                    android:maxLines="1"
-                    android:padding="@dimen/activity_small_margin" />
 
                 <ImageView
+                    android:id="@+id/uploadImageIV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/iv_user_image"
@@ -254,7 +196,7 @@
                     android:id="@+id/change_password"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/et_state"
+                    android:layout_below="@+id/ride_radius_text"
                     android:layout_alignParentEnd="true"
                     android:layout_marginLeft="@dimen/text_size"
                     android:layout_marginTop="@dimen/activity_margin_half"
@@ -279,6 +221,7 @@
                     app:cardCornerRadius="@dimen/nav_header_vertical_spacing">
 
                     <TextView
+                        android:id="@+id/save_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/gothicregular"

@@ -3,7 +3,6 @@ package com.example.rytryde;
 import android.app.Application;
 import android.content.Context;
 
-import com.example.rytryde.utils.AuthInterceptor;
 import com.facebook.stetho.Stetho;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 
@@ -38,7 +37,7 @@ public class App extends Application {
                 .connectTimeout(1000000, TimeUnit.MILLISECONDS)
                 .writeTimeout(1000000, TimeUnit.MILLISECONDS)
                 .addNetworkInterceptor(stethoInterceptor)
-                .addInterceptor(new AuthInterceptor())
+                //.addInterceptor(new AuthInterceptor())
                 .build();
 
 

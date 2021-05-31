@@ -19,11 +19,10 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 import okio.Buffer;
 
+import static com.example.rytryde.utils.Constants.base;
+
 public class AccountService implements IAccountService {
 
-    public static String domain = "https://rytryde.com";
-    public static String route = "/api";
-    public static String base = domain + route;
     public static MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     private OkHttpClient httpClient = App.getApp().getOkHttpClient();
 
@@ -33,6 +32,8 @@ public class AccountService implements IAccountService {
     public static String resendOTP = base + "/resend-otp";
     public static String signupVerifyOTP = base + "/verify-otp";
     public static String changePassword = base + "/change-password";
+    public static String updateProfile = base + "/profile";
+
     Response response = null;
 
     @Override
@@ -208,6 +209,47 @@ public class AccountService implements IAccountService {
                 .url(changePassword)
                 .addHeader("authorization", "Bearer " + AppService.getUser().getAuthorization())
                 .post(RequestBody.create(JSON, gson.toJson(userinfo)))
+                .build();
+
+        Log.e("Request", userinfo.toString());
+
+        try {
+            response = httpClient.newCall(request).execute();
+            return response;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public Response updateProfile(String firstName, String lastName, String email, String dialCode, String phoneNumber, String gender, String dob, String searchRadius, String mediaID) {
+        JSONObject userinfo = new JSONObject();
+        try {
+            userinfo.put("first_name", firstName);
+            userinfo.put("last_name", lastName);
+            userinfo.put("email", email);
+            userinfo.put("country_code", dialCode);
+            userinfo.put("phone_number", phoneNumber);
+            userinfo.put("gender", "");
+            userinfo.put("dob", "");
+            userinfo.put("search_radius", searchRadius);
+            userinfo.put("country_id", 0);
+            userinfo.put("state_id", 0);
+            userinfo.put("city_id", 0);
+            userinfo.put("nationality_id", 0);
+            userinfo.put("media_id", mediaID);
+
+
+        } catch (JSONException e) {
+
+        }
+
+
+        Request request = new Request.Builder()
+                .url(updateProfile)
+                .post(RequestBody.create(JSON, userinfo.toString()))
                 .build();
 
         Log.e("Request", userinfo.toString());

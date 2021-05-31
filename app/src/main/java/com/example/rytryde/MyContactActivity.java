@@ -14,7 +14,7 @@ import androidx.core.content.ContextCompat;
 import com.example.rytryde.service.app.AppService;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class MyContact extends AppCompatActivity {
+public class MyContactActivity extends AppCompatActivity {
     private static final int PERMISSIONS_REQUEST_ACCESS_READ_CONTACTS = 1;
     FloatingActionButton addContactFB;
 
@@ -28,7 +28,7 @@ public class MyContact extends AppCompatActivity {
         addContactFB.setOnClickListener(v -> {
             if (AppService.getContactPermission())
                 callPhoneBookActivity();
-            else requestContactsPermission(MyContact.this);
+            else requestContactsPermission(MyContactActivity.this);
         });
     }
 
@@ -67,7 +67,7 @@ public class MyContact extends AppCompatActivity {
 
     private void callPhoneBookActivity() {
 
-        Intent i = new Intent(MyContact.this, MyPhonebookActivity.class);
+        Intent i = new Intent(MyContactActivity.this, MyPhonebookActivity.class);
         i.putExtra("caller", "My contact");
         startActivity(i);
     }

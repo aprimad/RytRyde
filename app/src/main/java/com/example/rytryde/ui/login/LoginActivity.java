@@ -45,15 +45,14 @@ public class LoginActivity extends AppCompatActivity {
         passwordET = findViewById(R.id.password);
         loginButton = findViewById(R.id.login);
 
+        if (AppService.getUserPassword() != null)
+            passwordET.setText(AppService.getUserPassword());
+        if (AppService.getUser() != null)
+            usernameET.setText(AppService.getUser().getEmail());
+
         Log.e("username", usernameET.getText().toString());
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new AsyncLogin(usernameET.getText().toString(), passwordET.getText().toString()).execute();
-
-            }
-        });
+        loginButton.setOnClickListener(v -> new AsyncLogin(usernameET.getText().toString(), passwordET.getText().toString()).execute());
     }
 
     public void dismissProgressDialog() {
@@ -133,6 +132,7 @@ public class LoginActivity extends AppCompatActivity {
                   loginDetails = gson.fromJson(response, Login.class);
 
                     if (loginDetails.getSuccess()) {
+                        AppService.saveUserPassword(password);
                         AppService.saveUserInfo(loginDetails.getData());
                         Intent i = new Intent(LoginActivity.this, MainActivity.class);
                         i.putExtra("caller", "LoginActivity");
