@@ -25,7 +25,6 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.gms.tasks.Tasks;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.AutocompletePrediction;
 import com.google.android.libraries.places.api.model.AutocompleteSessionToken;
@@ -38,14 +37,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 
 public class LocationHelper {
 
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
-    private static final int DEFAULT_ZOOM = 15;
+    public static final int DEFAULT_ZOOM = 15;
     // A default location (Sydney, Australia) and default zoom to use when location permission is
     // not granted.
     private static final LatLng defaultLocation = new LatLng(-33.8523341, 151.2106085);
@@ -60,6 +56,9 @@ public class LocationHelper {
     private static String mTAG;
     private static Context mContext;
     private static GoogleMap googleMap;
+
+    public static final String destination = "Destination";
+    public static final String start = "Start";
 
     /**
      * Prompts the user for permission to use the device location.
@@ -259,11 +258,11 @@ public class LocationHelper {
 
             Task<FindAutocompletePredictionsResponse> autocompletePredictions = placesClient.findAutocompletePredictions(request);
 
-            try {
+            /*try {
                 Tasks.await(autocompletePredictions, 60, TimeUnit.SECONDS);
             } catch (ExecutionException | InterruptedException | TimeoutException e) {
                 e.printStackTrace();
-            }
+            }*/
 
             autocompletePredictions.addOnSuccessListener(findAutocompletePredictionsResponse -> {
                 if (findAutocompletePredictionsResponse != null) {
@@ -306,5 +305,7 @@ public class LocationHelper {
         }
         return placesClient;
     }
+
+
 }
 

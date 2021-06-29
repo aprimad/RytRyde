@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/locationToolbar"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize">
+
+
+        <TextView
+            android:id="@+id/addLocTV"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/margin"
+            android:fontFamily="@font/gothicbold"
+            android:gravity="center"
+            android:text="@string/add"
+            android:textColor="@color/primaryColour"
+            android:textSize="@dimen/activity_subheading_text_size" />
+
+        <TextView
+            android:id="@+id/cmsToolbarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/gothicbold"
+            android:gravity="center"
+            android:text="@string/addLocation"
+            android:textColor="@color/black"
+            android:textSize="@dimen/activity_subheading_text_size" />
+
+
+    </RelativeLayout>
+</androidx.appcompat.widget.Toolbar>

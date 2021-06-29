@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -31,13 +32,17 @@ import com.example.rytryde.service.http.account.AccountService;
 import com.example.rytryde.service.http.account.IAccountService;
 import com.example.rytryde.utils.CircleImageView;
 import com.example.rytryde.utils.General;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.hbb20.CountryCodePicker;
 
 import org.json.JSONObject;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.Objects;
 
 import okhttp3.Response;
 
@@ -46,7 +51,7 @@ public class EditProfileActivity extends AppCompatActivity {
     private static final int REQUEST_IMAGE_CAPTURE = 0;
     private static final int REQUEST_GALLERY = 1;
     final Calendar myCalendar = Calendar.getInstance();
-    String firstName, lastName, emailAddress, dialcode, mobile, gender, dob, rideRadius, mediaID;
+    String firstName, lastName, emailAddress, dialcode, mobile, gender, dob, rideRadius;
     CountryCodePicker countryCodePicker;
     TextView saveChangesTV;
     ImageView uploadImageIV;
@@ -54,6 +59,8 @@ public class EditProfileActivity extends AppCompatActivity {
     private EditText firstNameET, lastNameET, emailAddressET, mobileET, dobET, rideRadiusET;
     private AutoCompleteTextView genderTV;
     private IAccountService httpUrlConnectionService = new AccountService();
+    private String mediaID = "";
+    private File imageFile = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +79,19 @@ public class EditProfileActivity extends AppCompatActivity {
         uploadImageIV = findViewById(R.id.uploadImageIV);
         displayImageIV = findViewById(R.id.iv_user_image);
 
-        setupValues();
+        LoggedInUser user = AppService.getUser();
+        if (user != null) {
+            Log.e("Edit Profile Activity", AppService.getUser().getFirst_name());
+            firstNameET.setText(user.getFirst_name());
+            lastNameET.setText(user.getLast_name());
+            emailAddressET.setText(user.getEmail());
+            countryCodePicker.setCountryPreference(user.getCountry_code());
+            mobileET.setText(user.getPhone_number());
+            genderTV.setText(user.getGender());
+            dobET.setText(user.getDob());
+            new General.DownloadImageTask(displayImageIV)
+                    .execute(user.getMedia().getPath());
+        }
 
         DatePickerDialog.OnDateSetListener date = createDateDialog();
 
@@ -96,7 +115,6 @@ public class EditProfileActivity extends AppCompatActivity {
             gender = genderTV.getText().toString();
             dob = dobET.getText().toString();
             rideRadius = rideRadiusET.getText().toString();
-            mediaID = "0";
 
             if (firstName.equals(""))
                 General.showAlert(this, getResources().getString(R.string.please_enter_first_name), null);
@@ -127,16 +145,6 @@ public class EditProfileActivity extends AppCompatActivity {
 
     }
 
-    private void setupValues() {
-        LoggedInUser user = AppService.getUser();
-        if (user != null) {
-            firstNameET.setText(user.getFirst_name());
-            lastNameET.setText(user.getLast_name());
-            emailAddressET.setText(user.getEmail());
-            new General.DownloadImageTask(displayImageIV)
-                    .execute(user.getMedia().getPath());
-        }
-    }
 
     private void setupGenderTextView() {
         String[] gender = {"Male", "Female"};
@@ -194,9 +202,10 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
     private void updateProfile(String mediaID) {
-        if (mediaID.equals(""))
+        if (imageFile == null)
             new AsyncUpdateProfile(firstName, lastName, emailAddress, dialcode, mobile, gender, dob, rideRadius, mediaID).execute();
         else {
+            new AsyncUploadImage(this, "user", imageFile).execute();
 
         }
 
@@ -220,21 +229,106 @@ public class EditProfileActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
         super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
         switch (requestCode) {
-            case 0:
+            case REQUEST_IMAGE_CAPTURE:
                 if (resultCode == RESULT_OK) {
                     Bundle extras = imageReturnedIntent.getExtras();
                     Bitmap imageBitmap = (Bitmap) extras.get("data");
                     displayImageIV.setImageBitmap(imageBitmap);
+
+                    // CALL THIS METHOD TO GET THE URI FROM THE BITMAP
+                    Uri tempUri = General.getImageUri(getApplicationContext(), imageBitmap);
+
+                    // CALL THIS METHOD TO GET THE ACTUAL PATH
+                    imageFile = new File(General.getPathCamera(getApplicationContext(), tempUri));
                 }
                 break;
-            case 1:
+            case REQUEST_GALLERY:
                 if (resultCode == RESULT_OK) {
                     Uri selectedImage = imageReturnedIntent.getData();
                     displayImageIV.setImageURI(selectedImage);
+
+                    String imagepath = General.getPathGallery(this, selectedImage);
+                    imageFile = new File(imagepath);
                 }
 
                 break;
         }
+    }
+
+    public class AsyncUploadImage extends AsyncTask<String, String, String> {
+
+        @SuppressLint("StaticFieldLeak")
+        private String mediaFor;
+        private File file;
+        private Context context;
+
+        private Dialog loadingDialog;
+
+        public AsyncUploadImage(Context mcontext, String mmediaFor, File mimage) {
+            mediaFor = mmediaFor;
+            file = mimage;
+            context = mcontext;
+
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            if (loadingDialog == null) {
+                loadingDialog = General.loadingProgress(context);
+                loadingDialog.show();
+            }
+
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            Response response = null;
+            String responseString = null;
+            try {
+
+                response = httpUrlConnectionService.uploadMedia(mediaFor, file);
+                if (response != null) {
+                    responseString = response.body().string();
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return responseString;
+        }
+
+
+        @Override
+        protected void onPostExecute(String response) {
+            if (response != null) {
+                Log.e("response post image", response);
+
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    Boolean outcome = jsonObject.getBoolean("success");
+                    Log.e("outcome", Boolean.toString(outcome));
+
+                    if (loadingDialog != null && loadingDialog.isShowing())
+                        loadingDialog.dismiss();
+                    if (outcome) {
+                        AppService.saveMediaData(jsonObject.getJSONObject("data").toString());
+                        new AsyncUpdateProfile(firstName, lastName, emailAddress, dialcode, mobile, gender, dob, rideRadius, Integer.toString(Objects.requireNonNull(AppService.getMedia()).getId())).execute();
+                    } else {
+                        new AlertDialog.Builder(context)
+                                .setMessage(jsonObject.getJSONObject("error").getString("message"))
+                                .setPositiveButton(getResources().getString(R.string.ok), null)
+                                .show();
+                    }
+
+                } catch (Exception e) {
+                    Log.e("exception", e.getMessage());
+                }
+
+            }
+
+        }
+
     }
 
     public class AsyncUpdateProfile extends AsyncTask<String, String, String> {
@@ -299,16 +393,27 @@ public class EditProfileActivity extends AppCompatActivity {
                     if (loadingDialog != null && loadingDialog.isShowing())
                         loadingDialog.dismiss();
                     if (outcome) {
-                        /*AppService.saveFirstName(firstName);
-                        AppService.saveLastName(lastName);
-                        AppService.saveEmail(email);
-                        AppService.saveMobileNumber(mobibleNumber);
-                        AppService.saveDialCode(dialCode);
-                        AppService.saveUserPassword(password);
-                        Intent i = new Intent(SignUpActivity.this, VerifyMobileActivity.class);
-                        i.putExtra("caller", "SignUpActivity");
-                        startActivity(i);
-                        finish();*/
+
+                        Gson gson = new GsonBuilder().create();
+
+                        LoggedInUser updatedUser = gson.fromJson(jsonObject.getJSONObject("data").toString(), LoggedInUser.class);
+                        Objects.requireNonNull(AppService.getUser()).setFirst_name(updatedUser.getFirst_name());
+                        Objects.requireNonNull(AppService.getUser()).setLast_name(updatedUser.getLast_name());
+                        Objects.requireNonNull(AppService.getUser()).setEmail(updatedUser.getEmail());
+                        Objects.requireNonNull(AppService.getUser()).setGender(updatedUser.getGender());
+                        Objects.requireNonNull(AppService.getUser()).setDob(updatedUser.getDob());
+                        Objects.requireNonNull(AppService.getUser()).setSearch_radius(updatedUser.getSearch_radius());
+                        Objects.requireNonNull(AppService.getUser()).setPhone_number(updatedUser.getPhone_number());
+                        Objects.requireNonNull(AppService.getUser()).setCountry_code(updatedUser.getCountry_code());
+                        Objects.requireNonNull(AppService.getUser()).setMedia(updatedUser.getMedia());
+                        Log.e("edit profile act", AppService.getUser().getFirst_name());
+
+                        new AlertDialog.Builder(EditProfileActivity.this)
+                                .setMessage(jsonObject.getString("message"))
+                                .setPositiveButton(getResources().getString(R.string.ok), (dialog, which) -> {
+                                    finish();
+                                })
+                                .show();
                     } else {
                         new AlertDialog.Builder(EditProfileActivity.this)
                                 .setMessage(jsonObject.getJSONObject("error").getString("message"))
@@ -325,4 +430,5 @@ public class EditProfileActivity extends AppCompatActivity {
         }
 
     }
+
 }

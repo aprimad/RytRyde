@@ -23,6 +23,7 @@
         android:theme="@style/Theme.RytRyde">
         <activity
             android:name=".LocationActivity"
+            android:theme="@style/Theme.RytRyde.NoActionBar"
             android:windowSoftInputMode="adjustResize" />
 
         <meta-data
@@ -76,7 +77,9 @@
         <activity
             android:name=".VerifyMobileActivity"
             android:theme="@style/Theme.RytRyde.NoActionBar" />
-        <activity android:name=".AddVehicleDetailsActivity" />
+        <activity
+            android:name=".AddVehicleDetailsActivity"
+            android:theme="@style/Theme.RytRyde.NoActionBar" />
         <activity
             android:name=".EditProfileActivity"
             android:theme="@style/Theme.RytRyde.NoActionBar" />
@@ -89,7 +92,9 @@
 
         </activity>
         <activity android:name=".MyGroupActivity" />
-        <activity android:name=".MyVehicle" />
+        <activity
+            android:name=".MyVehicleActivity"
+            android:theme="@style/Theme.RytRyde.NoActionBar" />
         <activity android:name=".GroupMemberListingActivity" />
         <activity android:name=".SignInActivity">
 

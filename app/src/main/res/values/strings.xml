@@ -196,5 +196,14 @@
     <string name="gallery">Gallery</string>
     <string name="cancel">Cancel</string>
     <string name="please_enter_email">Please enter your email</string>
+    <string name="addLocation">Add Location</string>
+    <string name="menu_search">Search</string>
+    <string name="click_add_vehicle">Click on add button to add a vechicle</string>
+    <string name="please_select_date">Please select date first</string>
+    <string name="please_enter_start_add">Please enter the start address</string>
+    <string name="please_enter_dest_add">Please enter the destination address</string>
+    <string name="please_select_ride_date">Select your ride date</string>
+    <string name="please_select_ride_time">Select your ride time</string>
+    <string name="please_select_add_cantbesame">Pickup address and drop off address can not be same</string>
 
 </resources>

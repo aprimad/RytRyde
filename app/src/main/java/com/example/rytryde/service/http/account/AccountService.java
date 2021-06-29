@@ -9,10 +9,12 @@ import com.google.gson.Gson;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -33,6 +35,7 @@ public class AccountService implements IAccountService {
     public static String signupVerifyOTP = base + "/verify-otp";
     public static String changePassword = base + "/change-password";
     public static String updateProfile = base + "/profile";
+    public static String uploadMedia = base + "/upload-image";
 
     Response response = null;
 
@@ -249,6 +252,7 @@ public class AccountService implements IAccountService {
 
         Request request = new Request.Builder()
                 .url(updateProfile)
+                .addHeader("authorization", "Bearer " + AppService.getUser().getAuthorization())
                 .post(RequestBody.create(JSON, userinfo.toString()))
                 .build();
 
@@ -262,5 +266,30 @@ public class AccountService implements IAccountService {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public Response uploadMedia(String mediaFor, File image) {
+        RequestBody requestBody = new MultipartBody.Builder().setType(MultipartBody.FORM)
+                .addFormDataPart("image", image.getName(),
+                        RequestBody.create(MediaType.parse("image/png"), image))
+                .addFormDataPart("image_type", mediaFor)
+                .build();
+
+        Request request = new Request.Builder()
+                .url(uploadMedia)
+                .addHeader("authorization", "Bearer " + AppService.getUser().getAuthorization())
+                .post(requestBody)
+                .build();
+
+        try {
+            response = httpClient.newCall(request).execute();
+            return response;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+
     }
 }

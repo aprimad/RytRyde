@@ -5,6 +5,9 @@ public class Media {
     private String name;
     private String type;
     private String path;
+    private String user_id;
+    private String updated_at;
+    private String created_at;
 
     public int getId() {
         return id;

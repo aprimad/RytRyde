@@ -7,8 +7,8 @@ import android.util.Base64;
 
 import com.example.rytryde.App;
 import com.example.rytryde.data.model.LoggedInUser;
+import com.example.rytryde.data.model.Media;
 import com.example.rytryde.utils.CustomKeyChain;
-import com.facebook.android.crypto.keychain.SharedPrefsBackedKeyChain;
 import com.facebook.crypto.Crypto;
 import com.facebook.crypto.Entity;
 import com.facebook.crypto.exception.CryptoInitializationException;
@@ -30,6 +30,7 @@ public class AppService {
     private static final String EMAIL = "email";
     private static final String FIRST_NAME = "fname";
     private static final String LAST_NAME = "fname";
+    private static final String MEDIA = "media";
     private static LoggedInUser user;
     private static final String COUNTRY = "country";
     private static final String OTP = "otp";
@@ -50,12 +51,13 @@ public class AppService {
             SharedPreferences preferences = App.getApp().getSharedPreferences(SETTINGS_NAME, Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = preferences.edit();
             editor.putString(USERNAME_ENC, encryptedString);
-            editor.commit();
+            editor.apply();
 
         } catch (CryptoInitializationException | IOException | KeyChainException e) {
             e.printStackTrace();
         }
     }
+
 
     public static String getUsername() {
         SharedPreferences settings = App.getApp().getSharedPreferences(SETTINGS_NAME, Context.MODE_PRIVATE);
@@ -93,7 +95,7 @@ public class AppService {
             SharedPreferences preferences = App.getApp().getSharedPreferences(SETTINGS_NAME, Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = preferences.edit();
             editor.putString(PASSWORD_ENC, encryptedPasswordString);
-            editor.commit();
+            editor.apply();
 
         } catch (CryptoInitializationException | IOException | KeyChainException e) {
             e.printStackTrace();
@@ -127,7 +129,7 @@ public class AppService {
         SharedPreferences preferences = App.getApp().getSharedPreferences(SETTINGS_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString(AUTH_TOKEN, path);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getAuthToken() {
@@ -140,7 +142,7 @@ public class AppService {
         SharedPreferences preferences = App.getApp().getSharedPreferences(SETTINGS_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString(MOBILE_NUMER, mobile);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getMobileNumber() {
@@ -153,7 +155,7 @@ public class AppService {
         SharedPreferences preferences = App.getApp().getSharedPreferences(SETTINGS_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putBoolean(CONTACT_PERMISSION, permission);
-        editor.commit();
+        editor.apply();
     }
 
     public static Boolean getContactPermission() {
@@ -166,7 +168,7 @@ public class AppService {
         SharedPreferences preferences = App.getApp().getSharedPreferences(SETTINGS_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString(DIAL_CODE, code);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getDialCode() {
@@ -179,7 +181,7 @@ public class AppService {
         SharedPreferences preferences = App.getApp().getSharedPreferences(SETTINGS_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString(EMAIL, email);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getEMAIL() {
@@ -192,7 +194,7 @@ public class AppService {
         SharedPreferences preferences = App.getApp().getSharedPreferences(SETTINGS_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString(FIRST_NAME, firstName);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getFirstName() {
@@ -205,7 +207,7 @@ public class AppService {
         SharedPreferences preferences = App.getApp().getSharedPreferences(SETTINGS_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString(OTP, otp);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getOTP() {
@@ -218,7 +220,7 @@ public class AppService {
         SharedPreferences preferences = App.getApp().getSharedPreferences(SETTINGS_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString(LAST_NAME, lastName);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getLastName() {
@@ -229,84 +231,43 @@ public class AppService {
 
 
     public static void saveUserInfo(LoggedInUser user) {
-        if (user == null) {
-            return;
-        }
 
         Gson gson = new GsonBuilder().create();
-        String veteranString = gson.toJson(user);
+        String userString = gson.toJson(user);
 
-        Crypto crypto = new Crypto(
-                new SharedPrefsBackedKeyChain(App.getApp()),
-                new SystemNativeCryptoLibrary());
-
-        try {
-            byte[] doctorBytes = veteranString.getBytes();
-
-            Entity entity = new Entity(USER_DATA);
-            byte[] encryptedBytes = crypto.encrypt(doctorBytes, entity);
-
-            String encryptedDoctorString = Base64.encodeToString(encryptedBytes, Base64.NO_WRAP);
-
-            SharedPreferences settings = App.getApp().getSharedPreferences(SETTINGS_NAME, Context.MODE_PRIVATE);
-            SharedPreferences.Editor settingsEditor = settings.edit();
-
-            settingsEditor.putString(USER_DATA, encryptedDoctorString);
-            settingsEditor.commit();
-
-
-        } catch (CryptoInitializationException | IOException | KeyChainException e) {
-            e.printStackTrace();
-        }
+        SharedPreferences preferences = App.getApp().getSharedPreferences(SETTINGS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(USER_DATA, userString);
+        editor.apply();
     }
 
     public static LoggedInUser getUser() {
 
-        if (user != null) {
-            return user;
-        }
-
-        SharedPreferences settings = App.getApp().getSharedPreferences(SETTINGS_NAME, Context.MODE_PRIVATE);
-
-        String encryptedDoctorString = settings.getString(USER_DATA, null);
-        if (!TextUtils.isEmpty(encryptedDoctorString)) {
-
-            Crypto crypto = new Crypto(
-                    new SharedPrefsBackedKeyChain(App.getApp()),
-                    new SystemNativeCryptoLibrary());
-
-            try {
-                byte[] encryptedBytes = Base64.decode(encryptedDoctorString, Base64.NO_WRAP);
-                byte[] decryptedBytes = crypto.decrypt(encryptedBytes, new Entity(USER_DATA));
-
-                Gson gson = new GsonBuilder().create();
-                user = gson.fromJson(new String(decryptedBytes), LoggedInUser.class);
-
-                return user;
-
-            } catch (CryptoInitializationException | IOException | KeyChainException e) {
-                e.printStackTrace();
-            }
+        SharedPreferences preferences = App.getApp().getSharedPreferences(SETTINGS_NAME, Context.MODE_PRIVATE);
+        String sessionId = preferences.getString(USER_DATA, null);
+        LoggedInUser user = new Gson().fromJson(sessionId, LoggedInUser.class);
+        if (TextUtils.isEmpty(sessionId)) {
+            return null;
         }
         return user;
     }
 
-    public static void saveUserCountry(String data) {
 
+    public static void saveMediaData(String data) {
         SharedPreferences preferences = App.getApp().getSharedPreferences(SETTINGS_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putString(COUNTRY, data);
-        editor.commit();
+        editor.putString(MEDIA, data);
+        editor.apply();
     }
 
-    public static String getUserCountry() {
+    public static Media getMedia() {
         SharedPreferences preferences = App.getApp().getSharedPreferences(SETTINGS_NAME, Context.MODE_PRIVATE);
-        String sessionId = preferences.getString(COUNTRY, null);
-
+        String sessionId = preferences.getString(MEDIA, null);
+        Media media = new Gson().fromJson(sessionId, Media.class);
         if (TextUtils.isEmpty(sessionId)) {
             return null;
         }
-        return sessionId;
+        return media;
     }
 
     public static void clearAll() {

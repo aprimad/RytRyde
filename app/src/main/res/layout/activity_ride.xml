@@ -57,7 +57,8 @@
                     android:fontFamily="@font/gothicregular"
                     android:hint="@string/Enter_start_address"
                     android:inputType="none"
-                    android:padding="@dimen/activity_small_margin" />
+                    android:padding="@dimen/activity_small_margin"
+                    android:singleLine="true" />
 
             </LinearLayout>
 
@@ -87,7 +88,8 @@
                     android:fontFamily="@font/gothicregular"
                     android:hint="@string/Enter_dest_address"
                     android:inputType="none"
-                    android:padding="@dimen/activity_small_margin" />
+                    android:padding="@dimen/activity_small_margin"
+                    android:singleLine="true" />
 
             </LinearLayout>
 
@@ -102,28 +104,40 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/activity_large_margin"
-                android:layout_marginEnd="@dimen/activity_large_margin"
-                android:layout_marginBottom="@dimen/activity_large_margin">
+                android:layout_height="wrap_content">
 
-                <RadioButton
-                    android:layout_width="wrap_content"
+                <RadioGroup
+                    android:id="@+id/rideTypeRG"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/gothicregular"
-                    android:padding="@dimen/activity_small_margin"
-                    android:text="@string/one_time"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="@color/black" />
+                    android:layout_marginStart="@dimen/activity_large_margin"
+                    android:layout_marginEnd="@dimen/activity_large_margin"
+                    android:layout_marginBottom="@dimen/activity_large_margin"
+                    android:orientation="horizontal">
 
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/gothicregular"
-                    android:text="@string/regular"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="@color/black" />
+                    <RadioButton
+                        android:id="@+id/onetimeRB"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="true"
+                        android:fontFamily="@font/gothicregular"
+                        android:padding="@dimen/activity_tiny_margin"
+                        android:text="@string/one_time"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/black" />
 
+                    <RadioButton
+                        android:id="@+id/regularRB"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/gothicregular"
+                        android:padding="@dimen/activity_tiny_margin"
+                        android:text="@string/regular"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/black" />
+                </RadioGroup>
             </LinearLayout>
 
             <LinearLayout
@@ -193,6 +207,10 @@
                         android:layout_weight="1"
                         android:background="@drawable/light_blue_round_corner_bg"
                         android:fontFamily="@font/gothicregular"
+                        android:clickable="false"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
                         android:hint="@string/select_date"
                         android:padding="@dimen/activity_small_margin" />
 
@@ -207,6 +225,10 @@
                         android:layout_weight="1"
                         android:background="@drawable/light_blue_round_corner_bg"
                         android:fontFamily="@font/gothicregular"
+                        android:clickable="false"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
                         android:hint="@string/select_time"
                         android:padding="@dimen/activity_small_margin" />
 
@@ -215,6 +237,7 @@
             </LinearLayout>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/ride_submitCV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

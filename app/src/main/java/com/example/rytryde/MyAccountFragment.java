@@ -27,6 +27,7 @@ public class MyAccountFragment extends Fragment {
             rateUsLL, tAndCLL, priPolLL, faqLL, whoareweLL;
     private TextView name, number, carbonsave;
 
+
     public MyAccountFragment() {
         // Required empty public constructor
     }
@@ -63,13 +64,9 @@ public class MyAccountFragment extends Fragment {
         carbonsave = (TextView) view.findViewById(R.id.tv_total_carbon_saved);
         number = (TextView) view.findViewById(R.id.tv_phoneNumber);
 
-        LoggedInUser user = AppService.getUser();
-        if (user != null) {
-            String fullname = user.getFirst_name() + " " + user.getLast_name();
-            name.setText(fullname);
-            new General.DownloadImageTask(profileImage)
-                    .execute(user.getMedia().getPath());
-        }
+        setupHeader();
+
+
         editProfileIV.setOnClickListener(v -> {
             i = new Intent(getContext(), EditProfileActivity.class);
             i.putExtra("caller", "MainActivity");
@@ -96,7 +93,7 @@ public class MyAccountFragment extends Fragment {
             startActivity(i);*/
         });
         myVehicleLL.setOnClickListener(v -> {
-            i = new Intent(getContext(), MyVehicle.class);
+            i = new Intent(getContext(), MyVehicleActivity.class);
             i.putExtra("caller", "MainActivity");
             startActivity(i);
         });
@@ -144,11 +141,31 @@ public class MyAccountFragment extends Fragment {
 
     }
 
+    private void setupHeader() {
+        LoggedInUser user = AppService.getUser();
+        if (user != null) {
+            String fullname = user.getFirst_name() + " " + user.getLast_name();
+            name.setText(fullname);
+            String mobilenumber = user.getCountry_code() + " " + user.getPhone_number();
+            number.setText(mobilenumber);
+            new General.DownloadImageTask(profileImage)
+                    .execute(user.getMedia().getPath());
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        setupHeader();
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_my_account, container, false);
     }
+
 
 }

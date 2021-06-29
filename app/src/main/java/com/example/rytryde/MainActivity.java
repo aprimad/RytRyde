@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     FloatingActionButton rideFAB;
     private boolean fabExpanded = false;
     LinearLayout ridesLL, accountLL;
+    private Boolean shouldRefreshOnResume = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,8 +84,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.nav_host_fragment, account)
-                        .addToBackStack(null)
+                transaction.add(R.id.nav_host_fragment, account, "MENU_FRAGMENT")
+                        .addToBackStack("MENU_FRAGMENT")
                         .commit();
             }
         });

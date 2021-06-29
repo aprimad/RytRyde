@@ -60,7 +60,7 @@ public class UpcomingRideItemAdapter extends RecyclerView.Adapter<UpcomingRideIt
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cRideListener.onRideClick(view, ride, position);
+//                cRideListener.onRideClick(view, ride, position);
             }
         });
 

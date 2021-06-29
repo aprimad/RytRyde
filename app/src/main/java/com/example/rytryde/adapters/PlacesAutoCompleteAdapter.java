@@ -76,30 +76,33 @@ public class PlacesAutoCompleteAdapter extends RecyclerView.Adapter<PlacesAutoCo
     public Filter getFilter() {
         return new Filter() {
             @Override
-            protected FilterResults performFiltering(CharSequence constraint) {
+            public FilterResults performFiltering(CharSequence constraint) {
                 // Cancel any previous place prediction requests
                 handler.removeCallbacksAndMessages(null);
                 mResultList.clear();
 
                 FilterResults results = new FilterResults();
                 // Skip the autocomplete query if no constraints are given.
+
+                ArrayList<PlaceAutocomplete> newList = new ArrayList<>();
+
                 if (constraint != null) {
                     // Query the autocomplete API for the (constraint) search string.
                     // Start a new place prediction request in 300 ms
 
-                    // new AsyncLocationPrediction(mContext,token,constraint.toString(), LocationService.getRecentLocation()).execute();
-                    handler.postDelayed(() -> {
-                        try {
-                            mResultList = LocationHelper.getPrediction(TAG, constraint.toString(), placesClient, token);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                    //new AsyncLocationPrediction(mContext,token,constraint.toString(), LocationService.getRecentLocation(),results).execute();
 
-                    }, 300);
-                    if (mResultList != null) {
+                    try {
+                        newList = LocationHelper.getPrediction(TAG, constraint.toString(), placesClient, token);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+
+                    if (newList != null) {
                         // The API successfully returned results.
-                        results.values = mResultList;
-                        results.count = mResultList.size();
+                        results.values = newList;
+                        results.count = newList.size();
 
                     }
                 }
@@ -110,6 +113,7 @@ public class PlacesAutoCompleteAdapter extends RecyclerView.Adapter<PlacesAutoCo
             protected void publishResults(CharSequence constraint, FilterResults results) {
                 if (results != null && results.count > 0) {
                     // The API returned at least one result, update the data.
+                    mResultList = (ArrayList<PlaceAutocomplete>) results.values;
                     notifyDataSetChanged();
 
                 } else {
@@ -205,6 +209,7 @@ public class PlacesAutoCompleteAdapter extends RecyclerView.Adapter<PlacesAutoCo
             this.text = text;
             this.token = token;
             this.lastKnownLocation = lastKnownLcation;
+
 
         }
 

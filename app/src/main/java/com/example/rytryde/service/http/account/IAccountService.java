@@ -1,5 +1,7 @@
 package com.example.rytryde.service.http.account;
 
+import java.io.File;
+
 import okhttp3.Response;
 
 public interface IAccountService {
@@ -18,6 +20,6 @@ public interface IAccountService {
 
     Response updateProfile(String firstName, String lastName, String email, String country_code, String phoneNumber, String gender, String dob, String searchRadius, String mediaID);
 
-    //Response uploadMedia()
+    Response uploadMedia(String mediaFor, File image);
 
 }
